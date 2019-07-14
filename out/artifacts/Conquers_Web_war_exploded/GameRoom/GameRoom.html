@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="GameRoom.css">
+    <title>Game Room</title>
+</head>
+<body>
+<div class="toolBar">
+    <div class="toolbarContent">
+        <span class="leaveGame" onclick="onLeaveGameClick()">Leave Game</span>
+        <span class="userNameSpan">Hi, Eden</span>
+        <span class="gameStatus">Game status: Waiting for players...</span>
+        <span class="logoSpan">
+            <img src="lobby.JPG" class="image"/>
+        </span>
+    </div>
+</div>
+<div class="mainDiv">
+    <div class="winnerDialog">
+        <div class="closeEnd" onclick="removeDialog(event)">
+            <img class="closeEnd" src="close.JPG"/>
+        </div>
+        <div class="dialogContent">
+            <div class="endDetails">
+                <h2> Game Over !!</h2>
+                <div class="statusDiv">
+                    <span>Game finished status: </span>
+                    <span class="finishStatus"></span>
+                </div>
+                <div class="winnerDiv">
+                    <span>Winners : </span>
+                </div>
+                <div class="endScoreDiv">
+                    <span>Highest Score: </span>
+                    <span class="highestScore"></span>
+                </div>
+            </div>
+            <div class="completedBoard">
+                <div class="completedBoardBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="moveListDialog">
+        <div class="close" onclick="removeDialog(event)">
+            <img class="close" src="close.JPG"/>
+        </div>
+        <h2>Displaying Move List:</h2>
+        <div class="moveListBody">
+
+        </div>
+    </div>
+    <div class="replayDialog">
+        <div class="closeReplay" onclick="onReplayClose()">
+            <img class="closeEnd" src="close.JPG"/>
+        </div>
+        <div class="replayDialogContent">
+            <h2>Displaaying replay board: </h2>
+            <div class="replayBoard">
+                <div class="replayBoardBody">
+
+                </div>
+            </div>
+            <div class="replayButtons">
+                <div class="replayButton" onclick="onNextClick()">Next</div>
+                <div class="replayButton" onclick="onPrevClick()">Prev</div>
+                <span>Turn: </span>
+                <span class="currentTurnReplay"></span>
+                <span> / </span>
+                <span class="totalTurnReplay"></span>
+            </div>
+        </div>
+    </div>
+    <div class="mainDivBody">
+
+        <div class="leftDiv">
+            <div class="details">
+                <div class="PlayerTurn">Player Turn: </div>
+                <div class="PlayerColor">Player color:</div>
+                <div class="Turrings">Turrings :</div>
+                <div>
+                    <span>Turn: </span>
+                    <span class="turnSpan">0</span>
+                    <span> / 0</span>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="action" onclick="onEndMoveClick()">Maintaince</div>
+                <div class="action" onclick="onPlayTurnClick()">Calculated Risk</div>
+                <div class="action" onclick="onUndoClick()">well-orchestrated</div>
+ 	        <div class="action" onclick="onUndoClick()">Natural Territory</div>
+                <div class="action" onclick="onUndoClick()">Add Army</div>
+ 	        <div class="action" onclick="onUndoClick()">Retire</div>
+                <div class="action" onclick="onUndoClick()">Confirm</div>
+ 	        <div class="action" onclick="onUndoClick()">End Turn</div>
+	    </div>
+        </div>
+        <div class="board">
+            <div class="boardBody">
+
+            </div>
+        </div>
+      <div class="data">
+        <div class="Units">
+            <div class="rank">
+                <a>rank:</a>
+                <div class="unitsRank"></div>
+            </div>
+            <div class="UnitsTypes">
+                <a>Type:</a>
+                <div class="UnitsType"></div>
+            </div>
+            <div class="Firepower">
+                <a>FP:</a>
+                <div class="UnitFire power"></div>
+            </div>
+   		<div class="amount">
+                <a>amount:</a>
+                <div class="UnitAmount"></div>
+            </div>
+  		 <div class="price">
+                <a>price:</a>
+                <div class="Unitprice"></div>
+            </div>
+   		<div class="reduction">
+                <a>reduction:</a>
+                <div class="UnitReduction"></div>
+        </div>
+
+    </div>
+   <div class="Territory">
+   	<div class="TerritoryID">Territory ID: </div>
+	<div class="Army">Army: </div>
+	<div class="ArmysTerritory">
+    	<div class="rank">
+                <a>rank:</a>
+                <div class="unitsRank"></div>
+        </div>
+        <div class="UnitsTypes">
+                <a>Type:</a>
+                <div class="UnitsType"></div>
+        </div>
+        <div class="Firepower">
+                <a>FP:</a>
+                <div class="UnitFire power"></div>
+        </div>
+	<div class="amount">
+                <a>amount:</a>
+ 	       <div class="UnitAmount"></div>
+        </div>
+  	<div class="Maintaince">
+                <a>Maintaince:</a>
+                <div class="Unitprice"></div>
+        </div>
+</div>
+  </div>
+   	
+
+</div>
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="GameRoom.js"></script>
+</body>
+</html>
