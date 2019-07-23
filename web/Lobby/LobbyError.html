@@ -24,6 +24,7 @@
         Choose XML File: <input type="file" name="xml" title="" ><br />
         <button type="submit" value="Submit">Submit</button>
     </div>
+    <label class=\"red\">Error in XML file - please enter valid XML</label>
 </form>
 <span class="errorXml"></span>
 
@@ -46,12 +47,14 @@
                 <div class="detailsOfBoard"></div>
                 <div class="detailsOfUnits"></div>
 
-                <Button  name="btn" value="quitbtn"onclick="addUser()"> start </Button>
+                <form action="/GameRoom/GameRoom.html" method="get">
+                    <Button  name="btn" value="quitbtn"> start </Button>
 
+                </form>
                 <Button  name="btn" value="quitbtn"onclick="hideRoom()"> return to lobby </Button>
 
             </div>
-      </div>
+        </div>
     </div>
 </div>
 <div class="right">

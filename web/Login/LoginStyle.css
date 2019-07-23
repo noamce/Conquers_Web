@@ -1,0 +1,23 @@
+.UserNameInput {
+    width: 200px;
+    height: 30px;
+    
+}
+
+.buttonLogin {
+    heigh: 300px;
+}
+
+.welcomeSpan {
+    font-size: 60px;
+    color: wheat
+}
+
+.mainDiv{
+    text-align: center;
+    color:wheat
+}
+
+.mainBody{
+    background: black;
+}
