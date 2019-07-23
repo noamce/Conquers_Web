@@ -1,4 +1,5 @@
 import GameEngine.GameEngine;
+import GameObjects.unitDataTable;
 import GameObjects.Player;
 import GameObjects.Territory;
 import com.google.gson.Gson;
@@ -37,7 +38,7 @@ public class SingleGameServlet extends HttpServlet {
         }
         if (action.equals("dataTableDetails"))
         {
-            leaveGame(req,resp);
+           sendTableData(req,resp);
         }
 //        if (room.isGameIsAlive())
 //        {
@@ -114,18 +115,18 @@ public class SingleGameServlet extends HttpServlet {
         Room currRoom=getCurrentRoom(req);
         GameEngine engine=currRoom.getGameEngine();
         List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
-
+        List<GameObjects.unitDataTable> uniDataTable=new ArrayList<>();
         for (int i = 0; i < unitMapp.size(); i++) {
 
             String unitType = unitMapp.get(i);
             int price1 = engine.getDescriptor().getUnitMap().get(unitType).getPurchase();
             int subduction1 = engine.getDescriptor().getUnitMap().get(unitType).getCompetenceReduction();
             int rank1 = engine.getDescriptor().getUnitMap().get(unitType).getRank();
-            //data.add(new Person(unitType, engine.getDescriptor().getUnitMap().get(unitType).getMaxFirePower(), "", price1, subduction1, rank1));
-            //build list of details
+            uniDataTable.add(new unitDataTable(unitType, engine.getDescriptor().getUnitMap().get(unitType).getMaxFirePower(), price1, subduction1, rank1));
+
 
         }
-        //   out.println(gson.toJson(listOfdetails)
+          out.println(gson.toJson(uniDataTable));
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 

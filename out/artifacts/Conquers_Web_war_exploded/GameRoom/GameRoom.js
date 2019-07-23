@@ -7,7 +7,7 @@ var targetTerritory
 var enginestart=false;
  window.onload=function ()
  {
-     setInterval(crateGameDetails,2000);
+     crateGameDetails();
  };
 function onLeaveGameClick() {
     $.ajax
@@ -82,10 +82,53 @@ function setGameDetails(data) {
         drawUnitTable();
     }
 }
-function drawDataTable(jason) {
-    var dataTable = document.getElementById('dataTable');
+function drawUnitTable()
+{
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "dataTableDetails"
+        },
+        type: 'GET',
+        success: drawDataTable
+
+    });
+}
+function drawDataTable(dataTable) {
     $("#dataTable").empty();
-    var tablerow = document.createElement("tr");
+
+    console.log(dataTable);
+      for ( var i = 0; i < dataTable.length; i++) {
+          var tr = document.createElement("tr");
+          var td = document.createElement("td");
+          td.appendChild(document.createTextNode(dataTable[i].rank));
+          tr.appendChild(td);
+          td=document.createElement("td");
+          td.appendChild(document.createTextNode(dataTable[i].type));
+          tr.appendChild(td);
+          td=document.createElement("td");
+          td.appendChild(document.createTextNode(dataTable[i].fp));
+          tr.appendChild(td);
+          td=document.createElement("td");
+          var amountInput = document.createElement("INPUT");
+          amountInput.setAttribute("size",2);
+          td.appendChild(amountInput);
+          tr.appendChild(td);
+          td=document.createElement("td");
+          td.appendChild(document.createTextNode(dataTable[i].price));
+          tr.appendChild(td);
+          td=document.createElement("td");
+          td.appendChild(document.createTextNode(dataTable[i].subduction));
+          tr.appendChild(td);
+          td=document.createElement("td");
+          tr.appendChild(td);
+
+          document.getElementById("dataTable").appendChild(tr);
+      }
+
+}
+function enterAmount() {
 
 
 }
@@ -118,10 +161,6 @@ function drawBoard()
         }
 
         div1.appendChild(tbl); // appends <table> into <div1>
-
-}
-function drawUnitTable()
-{
 
 }
 
