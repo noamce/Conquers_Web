@@ -20,6 +20,7 @@ public class SingleGameServlet extends HttpServlet {
     Room room;
     Player currentPlayer;
     Territory TargetTerritory;
+    private final String GAMES_URL = "Lobby/lobby.html";
     private List<Room> rooms = new ArrayList<>();
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -29,6 +30,14 @@ public class SingleGameServlet extends HttpServlet {
         if (action.equals("startGame"))
         {
             startGame(req,resp);
+        }
+        if (action.equals("LeaveGame"))
+        {
+            leaveGame(req,resp);
+        }
+        if (action.equals("dataTableDetails"))
+        {
+            leaveGame(req,resp);
         }
 //        if (room.isGameIsAlive())
 //        {
@@ -51,16 +60,10 @@ public class SingleGameServlet extends HttpServlet {
         rooms = (ArrayList<Room>) getServletContext().getAttribute("rooms");
         GameEngine engine;
         Room currRoom = null;
-        int i=0;
+
         String userName = req.getSession(false).getAttribute("username").toString();
 
-        while(i<rooms.size())
-        {
-            if (rooms.get(i).hasPlayer(userName)) {
-                currRoom = rooms.get(i);
-            }
-            i++;
-        }
+       currRoom=getCurrentRoom(req);
         if (currRoom != null) {
             cols = currRoom.getGameEngine().getDescriptor().getColumns();
             rows = currRoom.getGameEngine().getDescriptor().getRows();
@@ -68,10 +71,7 @@ public class SingleGameServlet extends HttpServlet {
             out.println(gson.toJson(new GameDetails(cols, rows , userName,engine,currRoom.isGameStarted())));
         }
     }
-
-
-    public void startGame(HttpServletRequest req, HttpServletResponse resp)
-    {
+    public Room getCurrentRoom(HttpServletRequest req){
         int i=0;
         String userName = req.getSession(false).getAttribute("username").toString();
         Room currRoom=null;
@@ -82,11 +82,51 @@ public class SingleGameServlet extends HttpServlet {
             }
             i++;
         }
+
+        return currRoom;
+    }
+
+    public void startGame(HttpServletRequest req, HttpServletResponse resp)
+    {
+        Room currRoom=getCurrentRoom(req);
         currRoom.getGameEngine().getDescriptor().setPlayersList(room.getPlayers());
         currRoom.getGameEngine().newGame();
         getServletContext().setAttribute("rooms",rooms);
     }
 
+    private void leaveGame(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//        resp.setContentType("application/json");
+//        PrintWriter out = resp.getWriter();
+//        Gson gson = new Gson();
+        Room currRoom=getCurrentRoom(req);
+        String userName = req.getSession(false).getAttribute("username").toString();
+        currRoom.removePlayer(userName);
+       // currRoom.getGameEngine().deletePlayer();
+        resp.sendRedirect(GAMES_URL);
+
+    }
+
+
+    private void sendTableData(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        Gson gson = new Gson();
+        Room currRoom=getCurrentRoom(req);
+        GameEngine engine=currRoom.getGameEngine();
+        List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
+
+        for (int i = 0; i < unitMapp.size(); i++) {
+
+            String unitType = unitMapp.get(i);
+            int price1 = engine.getDescriptor().getUnitMap().get(unitType).getPurchase();
+            int subduction1 = engine.getDescriptor().getUnitMap().get(unitType).getCompetenceReduction();
+            int rank1 = engine.getDescriptor().getUnitMap().get(unitType).getRank();
+            //data.add(new Person(unitType, engine.getDescriptor().getUnitMap().get(unitType).getMaxFirePower(), "", price1, subduction1, rank1));
+            //build list of details
+
+        }
+        //   out.println(gson.toJson(listOfdetails)
+    }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
     /**

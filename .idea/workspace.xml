@@ -7,8 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11bff4d9-e3e0-4bc0-8a41-45a992a449da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Conquers_Web/META-INF/Conquers_Web.kotlin_module" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingleGameServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingleGameServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UpLoadXmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UpLoadXmlFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,31 +28,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UpLoadXmlFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2074">
-              <caret line="136" selection-start-line="136" selection-end-line="136" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameEngine/GameEngine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="69" column="37" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="37" />
+            <state relative-caret-position="187">
+              <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
               <folding>
-                <element signature="method#loadXML#0;class#GameEngine#0" />
-                <element signature="e#1997#1998#0" expanded="true" />
-                <element signature="e#2054#2055#0" expanded="true" />
+                <element signature="e#2386#2532#0" />
+                <element signature="e#2577#2744#0" />
+                <element signature="e#2795#2910#0" />
+                <element signature="e#3195#3374#0" />
+                <element signature="e#3618#3796#0" />
+                <element signature="e#3855#4012#0" />
+                <element signature="e#4066#4190#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameEngine/GameManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="108" column="5" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -54,29 +46,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyPageControl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2329">
-              <caret line="215" column="37" selection-start-line="215" selection-start-column="25" selection-end-line="215" selection-end-column="37" />
-              <folding>
-                <element signature="n#!!block;n#createGameDialogCallback#0" />
-              </folding>
+            <state relative-caret-position="1722">
+              <caret line="218" column="62" selection-start-line="218" selection-start-column="17" selection-end-line="218" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9758">
-              <caret line="574" column="11" selection-start-line="574" selection-end-line="575" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="115" column="7" lean-forward="true" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
+            <state relative-caret-position="102">
+              <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -84,20 +64,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="100" column="1" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="1" />
+            <state relative-caret-position="290">
+              <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyError.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-561">
+              <caret selection-end-line="6" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SingleGameServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            <state relative-caret-position="157">
+              <caret line="118" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3675#3683#0" expanded="true" />
+                <element signature="e#5888#5889#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -117,11 +129,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="22" />
+            <state relative-caret-position="171">
+              <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#Room#0;class#Room#0" />
                 <element signature="e#2205#2206#0" expanded="true" />
                 <element signature="e#2239#2240#0" expanded="true" />
               </folding>
@@ -211,16 +222,16 @@
         <option value="$PROJECT_DIR$/src/GameEngine/GameEngine.java" />
         <option value="$PROJECT_DIR$/src/GameEngine/GameDescriptor.java" />
         <option value="$PROJECT_DIR$/web/Lobby/lobby.html" />
-        <option value="$PROJECT_DIR$/web/Lobby/LobbyPageControl.js" />
-        <option value="$PROJECT_DIR$/src/UpLoadXmlFile.java" />
         <option value="$PROJECT_DIR$/src/Room.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/web/Lobby/Rooms.css" />
         <option value="$PROJECT_DIR$/src/utils/GameDetails.java" />
-        <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.html" />
-        <option value="$PROJECT_DIR$/src/SingleGameServlet.java" />
-        <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.js" />
         <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.css" />
+        <option value="$PROJECT_DIR$/web/Lobby/LobbyPageControl.js" />
+        <option value="$PROJECT_DIR$/src/UpLoadXmlFile.java" />
+        <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.html" />
+        <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.js" />
+        <option value="$PROJECT_DIR$/src/SingleGameServlet.java" />
       </list>
     </option>
   </component>
@@ -232,10 +243,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1944" />
-    <option name="height" value="1044" />
+    <option name="x" value="-1688" />
+    <option name="y" value="3" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -273,6 +284,12 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="GameRoom" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Conquers_Web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Conquers_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Lobby" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -283,9 +300,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563872957230" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563911950799" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Conquers_313433245_308337930 (1)/Conquers_313433245_308337930/Eden_Noam" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -499,12 +516,12 @@
       <workItem from="1563640771896" duration="10960000" />
       <workItem from="1563707976949" duration="3133000" />
       <workItem from="1563783089193" duration="17986000" />
-      <workItem from="1563874410394" duration="445000" />
+      <workItem from="1563874410394" duration="16505000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173997000" />
+    <option name="totallyTimeSpent" value="190057000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -519,17 +536,17 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73179394" visible="true" weight="0.17246963" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.72906405" visible="true" weight="0.17246963" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" sideWeight="0.26820603" side_tool="true" visible="true" weight="0.17246963" />
+      <window_info id="Web" order="7" sideWeight="0.27093595" side_tool="true" visible="true" weight="0.17246963" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75789475" weight="0.27886322" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75789475" visible="true" weight="0.27886322" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.805668" weight="0.4724689" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -738,13 +755,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameEngine/NotWORKINGeXeP.java" />
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameObjects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -756,13 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
           <caret line="89" column="39" selection-start-line="89" selection-start-column="39" selection-end-line="89" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyError.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="6" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -814,16 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/Lobby/lobby.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -860,13 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UpLoadXmlFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameEngine/GameEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -886,37 +872,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyPageControl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2329">
-          <caret line="215" column="37" selection-start-line="215" selection-start-column="25" selection-end-line="215" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!block;n#createGameDialogCallback#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9758">
           <caret line="574" column="11" selection-start-line="574" selection-end-line="575" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="1" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SingleGameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -930,23 +889,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyError.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561">
+          <caret selection-end-line="6" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="22" />
+        <state relative-caret-position="171">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Room#0;class#Room#0" />
             <element signature="e#2205#2206#0" expanded="true" />
             <element signature="e#2239#2240#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UpLoadXmlFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+          <folding>
+            <element signature="e#2386#2532#0" />
+            <element signature="e#2577#2744#0" />
+            <element signature="e#2795#2910#0" />
+            <element signature="e#3195#3374#0" />
+            <element signature="e#3618#3796#0" />
+            <element signature="e#3855#4012#0" />
+            <element signature="e#4066#4190#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyPageControl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1722">
+          <caret line="218" column="62" selection-start-line="218" selection-start-column="17" selection-end-line="218" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="115" column="7" lean-forward="true" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
+        <state relative-caret-position="102">
+          <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SingleGameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3675#3683#0" expanded="true" />
+            <element signature="e#5888#5889#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

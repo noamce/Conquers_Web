@@ -10,7 +10,7 @@
 <body>
 <div class="toolBar">
     <div class="toolbarContent">
-        <span class="leaveGame" onclick="onLeaveGameClick()">Leave Game</span>
+        <span id="leaveButton" class="leaveGame" onclick="onLeaveGameClick()">Leave Game</span>
         <span class="userNameSpan">Hi, Eden</span>
         <span class="gameStatus">Game status: Waiting for players...</span>
         <span class="logoSpan">
@@ -33,14 +33,14 @@
                 </div>
             </div>
             <div class="actions">
-                <div class="action" onclick="onEndMoveClick()">Maintaince</div>
-                <div class="action" onclick="onPlayTurnClick()">Calculated Risk</div>
-                <div class="action" onclick="onUndoClick()">well-orchestrated</div>
- 	        <div class="action" onclick="onUndoClick()">Natural Territory</div>
-                <div class="action" onclick="onUndoClick()">Add Army</div>
- 	        <div class="action" onclick="onUndoClick()">Retire</div>
-                <div class="action" onclick="onUndoClick()">Confirm</div>
- 	        <div class="action" onclick="onUndoClick()">End Turn</div>
+                <div id="maintenance" class="action" onclick="onEndMoveClick()">Maintenance</div>
+                <div id="calculatedRisk" class="action" onclick="onPlayTurnClick()">Calculated Risk</div>
+                <div id="wellOrchestrated" class="action" onclick="onUndoClick()">well-orchestrated</div>
+ 	        <div id="naturalTerritory" class="action" onclick="onUndoClick()">Natural Territory</div>
+                <div id="addArmy" class="action" onclick="onUndoClick()">Add Army</div>
+ 	        <div id="retire" class="action" onclick="onUndoClick()">Retire</div>
+                <div id="confirm" class="action" onclick="onUndoClick()">Confirm</div>
+ 	        <div id="endTurn" class="action" onclick="onUndoClick()">End Turn</div>
 	    </div>
         </div>
         <div class="board">
@@ -50,30 +50,22 @@
         </div>
       <div class="data">
         <div class="Units">
-            <div class="rank">
-                <a>rank:</a>
-                <div class="unitsRank"></div>
+            <div table class="table table-hover" id="tableData">
+                <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Type</th>
+                    <th>FP</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Reduction</th>
+                </tr>
+                </thead>
+                <tbody id="dataTable">
+
+                </tbody>
+
             </div>
-            <div class="UnitsTypes">
-                <a>Type:</a>
-                <div class="UnitsType"></div>
-            </div>
-            <div class="Firepower">
-                <a>FP:</a>
-                <div class="UnitFire power"></div>
-            </div>
-   		<div class="amount">
-                <a>amount:</a>
-                <div class="UnitAmount"></div>
-            </div>
-  		 <div class="price">
-                <a>price:</a>
-                <div class="Unitprice"></div>
-            </div>
-   		<div class="reduction">
-                <a>reduction:</a>
-                <div class="UnitReduction"></div>
-        </div>
 
     </div>
    <div class="Territory">

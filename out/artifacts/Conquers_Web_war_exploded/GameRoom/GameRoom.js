@@ -9,7 +9,20 @@ var enginestart=false;
  {
      setInterval(crateGameDetails,2000);
  };
+function onLeaveGameClick() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "LeaveGame"
+        },
+        type: 'GET',
+        success: window.location = "../Lobby/lobby.html"
 
+    });
+
+
+}
 function crateGameDetails() {
     $.ajax
     ({
@@ -22,7 +35,20 @@ function crateGameDetails() {
 
     });
 }
+function turnOffButtons() {
 
+    document.getElementById('maintenance').style.visibility='hidden';
+    document.getElementById('calculatedRisk').style.visibility='hidden';
+    document.getElementById('wellOrchestrated').style.visibility='hidden';
+    document.getElementById('naturalTerritory').style.visibility='hidden';
+    document.getElementById('addArmy').style.visibility='hidden';
+    document.getElementById('tableData').style.visibility='hidden';
+    document.getElementById('confirm').style.visibility='hidden';
+
+
+
+
+}
 function setGameDetails(data) {
     cols = data.cols;
     rows = data.rows;
@@ -50,12 +76,19 @@ function setGameDetails(data) {
         if (alertGameStart == 1){
             alert("The game started");
         }
+        document.getElementById('leaveButton').style.visibility='hidden';
 
         drawBoard();
         drawUnitTable();
     }
 }
+function drawDataTable(jason) {
+    var dataTable = document.getElementById('dataTable');
+    $("#dataTable").empty();
+    var tablerow = document.createElement("tr");
 
+
+}
 function drawBoard()
 {
         // get the reference for the body

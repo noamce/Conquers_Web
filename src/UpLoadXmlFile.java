@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit;
     private GameEngine engine;
     private StringBuilder errorText = new StringBuilder();
     private final String GAMES_URL = "Lobby/lobby.html";
-    private final String ROOMS_ERROR_URL = "Lobby/RoomsErr.html";
     int count = 0;
     String error="ok";
 
@@ -82,12 +81,9 @@ import java.util.concurrent.TimeUnit;
             } catch (GameDescriptor.IllegalunitdetailsorderException e) {
                 error = "Error in the unit details of the XML \n Id's order are not right";
                 resp.sendRedirect(GAMES_URL);
-
-//
             } catch (GameDescriptor.noDefaultThresholdException e) {
                 error = "No default Army Threshold in XML";
                 resp.sendRedirect(GAMES_URL);
-//
             }
             if (error.equals("ok")) {
                 System.out.println("Current session name: " + currUserName);
