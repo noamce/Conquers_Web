@@ -17,7 +17,7 @@ public class Player implements Serializable {
         Id = Id++;
         this.playerName = playername;
         TerritoriesId = new ArrayList<>();
-        this.color=++color;
+        this.color=++this.color;
     }
 
     public Player(Player player) {

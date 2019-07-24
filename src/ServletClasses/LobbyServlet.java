@@ -1,3 +1,5 @@
+package ServletClasses;
+
 import GameEngine.GameDescriptor;
 import GameEngine.GameEngine;
 import com.google.gson.Gson;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@WebServlet(name = "LobbyServlet")
+@WebServlet(name = "ServletClasses.LobbyServlet")
 public class LobbyServlet extends HttpServlet {
     UserManager userManager;
     private GameEngine engine;

@@ -1,3 +1,5 @@
+package ServletClasses;
+
 import utils.ServletUtils;
 import utils.UserManager;
 
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(name = "LogoutServlet")
+@WebServlet(name = "ServletClasses.LogoutServlet")
 public class LogoutServlet extends HttpServlet {
     private final String login_url = "login.html";
 

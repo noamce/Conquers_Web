@@ -1,22 +1,19 @@
+package ServletClasses;
 
 import GameEngine.GameDescriptor;
 import GameEngine.GameEngine;
 import GameObjects.Player;
 import com.google.gson.Gson;
-import utils.UserManager;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
-@WebServlet(name = "UpLoadXmlFile")
+@WebServlet(name = "ServletClasses.UpLoadXmlFile")
     public class UpLoadXmlFile extends HttpServlet {
     private final static String XML_PATH = "/resources/ex3-medium.xml";
     private List<Room> rooms = new ArrayList<>();
@@ -220,7 +217,7 @@ import java.util.concurrent.TimeUnit;
                 "</form>\n"+
                 "<span class=\"userNameSpan\"></span>\n"+
                 "</header>\n" +
-                "<form accept-charset=\"UTF-8\" method=\"post\" action=\"/UpLoadXmlFile\" autocomplete=\"off\" enctype=\"multipart/form-data\">\n"+
+                "<form accept-charset=\"UTF-8\" method=\"post\" action=\"/ServletClasses.UpLoadXmlFile\" autocomplete=\"off\" enctype=\"multipart/form-data\">\n"+
                 "<div class=\"container\">\n"+
                 "<h3>Enter your own game:</h3>\n"+
                 "Choose XML File: <input type=\"file\" name=\"xml\" title=\"\" ><br />\n"+
@@ -231,7 +228,7 @@ import java.util.concurrent.TimeUnit;
                 "<span class=\"errorXml\"></span>\n"+
 
                 "<div class=\"left\">\n"+
-                "<img src=\"/images/Player List.png\"/>\n"+
+                "<img src=\"/images/PlayerModel List.png\"/>\n"+
                 "<div class=\"sidebar\">\n"+
                 "<div id=\"userslist\" class=\"left\">\n"+
                 "</div>\n"+

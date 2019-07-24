@@ -9,7 +9,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
-import java.math.BigInteger;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -148,8 +147,8 @@ public class GameDescriptor implements Serializable {
         }
 
         return players;
-        /*List<Player> players= new ArrayList<>();
-        List<Generated.Player> playersDes =loadplayers(descriptor);
+        /*List<PlayerModel> players= new ArrayList<>();
+        List<Generated.PlayerModel> playersDes =loadplayers(descriptor);
         if(playersDes.size()>4 || playersDes.size()<2) {
             System.out.println("Error in the Players details of the XML Number of Players is not Valid");
             throw new IllegalArgumentException();
@@ -157,13 +156,13 @@ public class GameDescriptor implements Serializable {
         }
         else {
             int count=0;
-            for (Generated.Player player : playersDes) {
+            for (Generated.PlayerModel player : playersDes) {
                 int id;
                 String name;
                 id = player.getId().intValue();
                 name = player.getName();
 
-                Player newPlayer = new Player(id, name, initialFunds,++count);
+                PlayerModel newPlayer = new PlayerModel(id, name, initialFunds,++count);
                 players.add(newPlayer);
 
             }

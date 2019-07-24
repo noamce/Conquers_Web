@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}Player" maxOccurs="4" minOccurs="2"/>
+ *         &lt;element ref="{}PlayerModel" maxOccurs="4" minOccurs="2"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "Players")
 public class Players {
 
-    @XmlElement(name = "Player", required = true)
+    @XmlElement(name = "PlayerModel", required = true)
     protected List<Player> player;
 
     /**

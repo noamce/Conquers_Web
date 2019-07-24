@@ -1,10 +1,9 @@
 package utils;
 
-import GameObjects.Player;
-import Generated.Game;
+import ServletClasses.Room;
 
 import javax.servlet.ServletContext;
-import java.io.PrintWriter;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class ServletUtils {
@@ -19,6 +18,21 @@ public class ServletUtils {
 		return (UserManager) servletContext.getAttribute("userManager");
 	}
 
+	public Room getCurrentRoom(HttpServletRequest req, List<Room> rooms){
+		int i=0;
+		String userName = req.getSession(false).getAttribute("username").toString();
+		Room currRoom=null;
+		while(i<rooms.size())
+		{
+			if (rooms.get(i).hasPlayer(userName)) {
+				currRoom = rooms.get(i);
+			}
+			i++;
+		}
+
+		return currRoom;
+	}
+
   //  public static void responseJson(Game room, PrintWriter out, boolean withWords) {
 //        StringBuilder gameJson = new StringBuilder();
 //        gameJson.append("{\n\t\"boadprint\": ");
@@ -26,9 +40,9 @@ public class ServletUtils {
 //        gameJson.append((",\"boardsize\":"+room.getEngine().getBoardSize()));
 //        if(withWords) {
 //            gameJson.append(",\"wordcomposed\": [");
-//            List<Player> players = room.getController().getEngine().getPlayers();
+//            List<PlayerModel> players = room.getController().getEngine().getPlayers();
 //
-//            Player currentPlayer = players.get(room.getController().getEngine().getTurnOf());
+//            PlayerModel currentPlayer = players.get(room.getController().getEngine().getTurnOf());
 //            for (int i = 0; i < currentPlayer.wordComposedList().size(); i++) {
 //                gameJson.append("\"" + currentPlayer.wordComposedList().get(i) + "\"");
 //                if (i != currentPlayer.wordComposedList().size() - 1)

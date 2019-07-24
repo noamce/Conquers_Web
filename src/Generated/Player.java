@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "name"
 })
-@XmlRootElement(name = "Player")
+@XmlRootElement(name = "PlayerModel")
 public class Player {
 
     @XmlElement(name = "Name", required = true)

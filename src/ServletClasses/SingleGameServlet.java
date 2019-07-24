@@ -1,9 +1,12 @@
+package ServletClasses;
+
 import GameEngine.GameEngine;
 import GameObjects.unitDataTable;
 import GameObjects.Player;
 import GameObjects.Territory;
 import com.google.gson.Gson;
 import utils.GameDetails;
+import utils.ServletUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +18,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SingleGameServlet")
+@WebServlet(name = "ServletClasses.SingleGameServlet")
 public class SingleGameServlet extends HttpServlet {
     String action;
     Room room;
@@ -23,6 +26,7 @@ public class SingleGameServlet extends HttpServlet {
     Territory TargetTerritory;
     private final String GAMES_URL = "Lobby/lobby.html";
     private List<Room> rooms = new ArrayList<>();
+    private ServletUtils utils = new ServletUtils();
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
@@ -64,7 +68,7 @@ public class SingleGameServlet extends HttpServlet {
 
         String userName = req.getSession(false).getAttribute("username").toString();
 
-       currRoom=getCurrentRoom(req);
+       currRoom = utils.getCurrentRoom(req, rooms);
         if (currRoom != null) {
             cols = currRoom.getGameEngine().getDescriptor().getColumns();
             rows = currRoom.getGameEngine().getDescriptor().getRows();
@@ -72,24 +76,11 @@ public class SingleGameServlet extends HttpServlet {
             out.println(gson.toJson(new GameDetails(cols, rows , userName,engine,currRoom.isGameStarted())));
         }
     }
-    public Room getCurrentRoom(HttpServletRequest req){
-        int i=0;
-        String userName = req.getSession(false).getAttribute("username").toString();
-        Room currRoom=null;
-        while(i<rooms.size())
-        {
-            if (rooms.get(i).hasPlayer(userName)) {
-                currRoom = rooms.get(i);
-            }
-            i++;
-        }
 
-        return currRoom;
-    }
 
     public void startGame(HttpServletRequest req, HttpServletResponse resp)
     {
-        Room currRoom=getCurrentRoom(req);
+        Room currRoom = utils.getCurrentRoom(req, rooms);
         currRoom.getGameEngine().getDescriptor().setPlayersList(room.getPlayers());
         currRoom.getGameEngine().newGame();
         getServletContext().setAttribute("rooms",rooms);
@@ -99,7 +90,7 @@ public class SingleGameServlet extends HttpServlet {
 //        resp.setContentType("application/json");
 //        PrintWriter out = resp.getWriter();
 //        Gson gson = new Gson();
-        Room currRoom=getCurrentRoom(req);
+        Room currRoom = utils.getCurrentRoom(req, rooms);
         String userName = req.getSession(false).getAttribute("username").toString();
         currRoom.removePlayer(userName);
        // currRoom.getGameEngine().deletePlayer();
@@ -112,7 +103,7 @@ public class SingleGameServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        Room currRoom=getCurrentRoom(req);
+        Room currRoom = utils.getCurrentRoom(req, rooms);
         GameEngine engine=currRoom.getGameEngine();
         List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
         List<GameObjects.unitDataTable> uniDataTable=new ArrayList<>();

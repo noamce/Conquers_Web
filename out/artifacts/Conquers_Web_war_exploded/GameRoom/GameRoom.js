@@ -22,9 +22,24 @@ function onLeaveGameClick() {
         success: window.location = "../Lobby/lobby.html"
 
     });
-
-
 }
+
+function getCurrentPlayerInfo() {
+    if(enginestart){
+        $.ajax
+        ({
+            url: '/playerInfo',
+            type: 'GET',
+            success: processInfo
+
+        });
+    }
+}
+
+function processInfo(data){
+    console.log(data);
+}
+
 function crateGameDetails() {
     $.ajax
     ({
@@ -82,6 +97,7 @@ function setGameDetails(data) {
 
         drawBoard();
         drawUnitTable();
+        getCurrentPlayerInfo();
     }
 }
 function drawUnitTable()

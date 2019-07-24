@@ -7,6 +7,7 @@ var targetTerritory;
 var engineStart=false;
 var buttonPressed;
 var dataTableSize;
+
  window.onload=function ()
  {
      createGameDetails();
@@ -22,10 +23,26 @@ function onLeaveGameClick() {
         success: window.location = "../Lobby/lobby.html"
 
     });
-
-
 }
-function createGameDetails() {
+
+function getCurrentPlayerInfo() {
+    if(enginestart){
+        $.ajax
+        ({
+            url: '/playerInfo',
+            type: 'GET',
+            success: processInfo
+
+        });
+    }
+}
+
+
+function processInfo(data){
+    console.log(data);
+}
+
+function crateGameDetails() {
     $.ajax
     ({
         url: 'SingleGame',
@@ -82,6 +99,7 @@ function setGameDetails(data) {
 
         drawBoard();
         drawUnitTable();
+        getCurrentPlayerInfo();
     }
 }
 function drawUnitTable()

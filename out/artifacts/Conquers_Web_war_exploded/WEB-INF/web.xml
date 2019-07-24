@@ -5,33 +5,37 @@
          version="4.0">
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-class>ServletClasses.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>lobby</servlet-name>
-        <servlet-class>LobbyServlet</servlet-class>
+        <servlet-class>ServletClasses.LobbyServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>SingleGame</servlet-name>
-        <servlet-class>SingleGameServlet</servlet-class>
+        <servlet-class>ServletClasses.SingleGameServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>lobby1</servlet-name>
-        <servlet-class>LobbyServlet</servlet-class>
+        <servlet-class>ServletClasses.LobbyServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>LogoutServlet</servlet-class>
+        <servlet-class>ServletClasses.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpLoadXmlFile</servlet-name>
-        <servlet-class>UpLoadXmlFile</servlet-class>
+        <servlet-class>ServletClasses.UpLoadXmlFile</servlet-class>
         <multipart-config>
             <max-file-size>10485760</max-file-size>
             <max-request-size>20971520</max-request-size>
             <file-size-threshold>5242880</file-size-threshold>
         </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayerInfo</servlet-name>
+        <servlet-class>ServletClasses.PlayerInfo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -51,7 +55,6 @@
         <servlet-name>SingleGame</servlet-name>
         <url-pattern>/GameRoom/SingleGame</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
@@ -63,6 +66,10 @@
     <servlet-mapping>
         <servlet-name>UpLoadXmlFile</servlet-name>
         <url-pattern>/Lobby/UpLoadXmlFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayerInfo</servlet-name>
+        <url-pattern>/playerInfo</url-pattern>
     </servlet-mapping>
 
 </web-app>
