@@ -3,8 +3,10 @@ var rows;
 var userName;
 var territoriesMap;
 var alertGameStart=0;
-var targetTerritory
-var enginestart=false;
+var targetTerritory;
+var engineStart=false;
+var buttonPressed;
+var dataTableSize;
  window.onload=function ()
  {
      crateGameDetails();
@@ -58,7 +60,7 @@ function setGameDetails(data) {
     territoriesMap=data.gameEngine.descriptor.territoryMap;
     if (data.started==true)
     {
-        if (enginestart==false)
+        if (engineStart==false)
         {
             $.ajax
             ({
@@ -70,7 +72,7 @@ function setGameDetails(data) {
                 type: 'GET',
 
             });
-            success:enginestart=true;
+            success:engineStart=true;
         }
         alertGameStart++
         if (alertGameStart == 1){
@@ -85,27 +87,29 @@ function setGameDetails(data) {
 function drawUnitTable()
 {
     $.ajax
-    ({
-        url: 'SingleGame',
-        data: {
-            action: "dataTableDetails"
-        },
-        type: 'GET',
-        success: drawDataTable
+({
+    url: 'SingleGame',
+    data: {
+        action: "dataTableDetails"
+    },
+    type: 'GET',
+    success: drawDataTable
 
-    });
+});
 }
 function drawDataTable(dataTable) {
     $("#dataTable").empty();
-
+    dataTableSize=dataTable.length;
     console.log(dataTable);
-      for ( var i = 0; i < dataTable.length; i++) {
+      for ( var i = 0; i < dataTable; i++) {
           var tr = document.createElement("tr");
           var td = document.createElement("td");
           td.appendChild(document.createTextNode(dataTable[i].rank));
           tr.appendChild(td);
           td=document.createElement("td");
-          td.appendChild(document.createTextNode(dataTable[i].type));
+          var type= document.createTextNode(dataTable[i].type)
+          type.setAttribute("id","unitType"+i);
+          td.appendChild(type);
           tr.appendChild(td);
           td=document.createElement("td");
           td.appendChild(document.createTextNode(dataTable[i].fp));
@@ -113,6 +117,7 @@ function drawDataTable(dataTable) {
           td=document.createElement("td");
           var amountInput = document.createElement("INPUT");
           amountInput.setAttribute("size",2);
+          amountInput.setAttribute("id","unitDataInput"+i);
           td.appendChild(amountInput);
           tr.appendChild(td);
           td=document.createElement("td");
@@ -164,22 +169,96 @@ function drawBoard()
 
 }
 
+function showTerritoryId(event)
+{
+    var target=event.currentTarget;
+    var string=target.innerHTML.toString();
+    if (string[4]=="\n")
+    {
+        var id=string[3];
 
+    }
+    else
+    {
+        var id=string[3].toString()+string[4].toString();
+    }
+
+    targetTerritory=id;
+    $('.TerritoryID').text("Territory Id: "+targetTerritory);
+}
+function showTerritoryInfo(event) {
+
+
+}
 function showDetail(event)
 {
-var target=event.currentTarget;
-var string=target.innerHTML.toString();
-if (string[4]=="\n")
-{
-    var id=string[3];
-
-}
-else
-{
-    var id=string[3].toString()+string[4].toString();
-}
-
-targetTerritory=id;
-    $('.TerritoryID').text("Territory Id: "+targetTerritory);
+showTerritoryId(event);
+showTerritoryInfo()
 //עדכון הצבא ברשותו
+}
+
+
+function onMaintenanceClick(){
+    buttonPressed=1;
+}
+function onCalculatedRiskClick(){
+    buttonPressed=2;
+
+}
+function onWellOrchestratedClick(){
+    buttonPressed=3;
+}
+function onNaturalTerritoryClick(){
+    buttonPressed=4;
+}
+function onAddArmyClick(){
+    buttonPressed=5;
+}
+function onRetireClick(){
+    buttonPressed=6;
+}
+function onConfirmClick(){
+    var params = {};
+    if(buttonPressed === 1)
+    {
+
+    }
+    if(buttonPressed === 2)
+    {
+
+    }
+    if(buttonPressed === 3)
+    {
+
+    }
+    if(buttonPressed === 4)
+    {
+
+    }
+    if(buttonPressed === 5)
+    {
+
+        params["field1"] = document
+    }
+    if(buttonPressed === 6)
+    {
+
+    }
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "Confirm",
+            buttonPressed: buttonPressed,
+            targetTerritory:targetTerritory
+        },
+        type: 'GET'
+
+
+    });
+//apicall
+}
+function onEndTurnClick(){
+    //apicall
+
 }

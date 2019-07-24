@@ -3,12 +3,13 @@ var rows;
 var userName;
 var territoriesMap;
 var alertGameStart=0;
-var targetTerritory
-var enginestart=false;
-var buttonPreesed;
+var targetTerritory;
+var engineStart=false;
+var buttonPressed;
+var dataTableSize;
  window.onload=function ()
  {
-     crateGameDetails();
+     createGameDetails();
  };
 function onLeaveGameClick() {
     $.ajax
@@ -24,7 +25,7 @@ function onLeaveGameClick() {
 
 
 }
-function crateGameDetails() {
+function createGameDetails() {
     $.ajax
     ({
         url: 'SingleGame',
@@ -45,7 +46,7 @@ function turnOffButtons() {
     document.getElementById('addArmy').style.visibility='hidden';
     document.getElementById('tableData').style.visibility='hidden';
     document.getElementById('confirm').style.visibility='hidden';
-
+    //document.getElementById('togglee').style.visibility = 'visible';
 
 
 
@@ -59,7 +60,7 @@ function setGameDetails(data) {
     territoriesMap=data.gameEngine.descriptor.territoryMap;
     if (data.started==true)
     {
-        if (enginestart==false)
+        if (engineStart==false)
         {
             $.ajax
             ({
@@ -71,7 +72,7 @@ function setGameDetails(data) {
                 type: 'GET',
 
             });
-            success:enginestart=true;
+            success:engineStart=true;
         }
         alertGameStart++
         if (alertGameStart == 1){
@@ -86,27 +87,29 @@ function setGameDetails(data) {
 function drawUnitTable()
 {
     $.ajax
-    ({
-        url: 'SingleGame',
-        data: {
-            action: "dataTableDetails"
-        },
-        type: 'GET',
-        success: drawDataTable
+({
+    url: 'SingleGame',
+    data: {
+        action: "dataTableDetails"
+    },
+    type: 'GET',
+    success: drawDataTable
 
-    });
+});
 }
 function drawDataTable(dataTable) {
     $("#dataTable").empty();
-
+    dataTableSize=dataTable.length;
     console.log(dataTable);
-      for ( var i = 0; i < dataTable.length; i++) {
+      for ( var i = 0; i < dataTableSize; i++) {
           var tr = document.createElement("tr");
           var td = document.createElement("td");
           td.appendChild(document.createTextNode(dataTable[i].rank));
           tr.appendChild(td);
           td=document.createElement("td");
-          td.appendChild(document.createTextNode(dataTable[i].type));
+          var type= document.createTextNode(dataTable[i].type)
+          type.setAttribute("id","unitType"+i);
+          td.appendChild(type);
           tr.appendChild(td);
           td=document.createElement("td");
           td.appendChild(document.createTextNode(dataTable[i].fp));
@@ -114,6 +117,7 @@ function drawDataTable(dataTable) {
           td=document.createElement("td");
           var amountInput = document.createElement("INPUT");
           amountInput.setAttribute("size",2);
+          amountInput.setAttribute("id","unitDataInput"+i);
           td.appendChild(amountInput);
           tr.appendChild(td);
           td=document.createElement("td");
@@ -165,22 +169,171 @@ function drawBoard()
 
 }
 
+function showTerritoryId(event)
+{
+    var target=event.currentTarget;
+    var string=target.innerHTML.toString();
+    if (string[4]=="\n")
+    {
+        var id=string[3];
 
+    }
+    else
+    {
+        var id=string[3].toString()+string[4].toString();
+    }
+
+    targetTerritory=id;
+    $('.TerritoryID').text("Territory Id: "+targetTerritory);
+}
+function showTerritoryInfo(event) {
+
+
+}
 function showDetail(event)
 {
-var target=event.currentTarget;
-var string=target.innerHTML.toString();
-if (string[4]=="\n")
-{
-    var id=string[3];
-
-}
-else
-{
-    var id=string[3].toString()+string[4].toString();
-}
-
-targetTerritory=id;
-    $('.TerritoryID').text("Territory Id: "+targetTerritory);
+showTerritoryId(event);
+showTerritoryInfo()
 //עדכון הצבא ברשותו
+}
+
+
+function onMaintenanceClick(){
+    buttonPressed=1;
+}
+function onCalculatedRiskClick(){
+    buttonPressed=2;
+
+}
+function onWellOrchestratedClick(){
+    buttonPressed=3;
+}
+function onNaturalTerritoryClick(){
+    buttonPressed=4;
+}
+function onAddArmyClick(){
+    buttonPressed=5;
+}
+function onRetireClick(){
+    buttonPressed=6;
+}
+function onConfirmClick(){
+    var params = {};
+    if(buttonPressed === 1)
+    {
+        $.ajax
+        ({
+            url: 'SingleGame',
+            data: {
+                action: "maintenance",
+                buttonPressed: buttonPressed,
+                targetTerritory:targetTerritory
+            },
+            type: 'GET',
+            success: checkEnoughTourings
+
+        });
+    }
+    if(buttonPressed === 2){
+        for ( var i = 0; i < dataTableSize; i++) {
+            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
+            params["action"]="calculatedRisk";
+            params["buttonPressed"]=buttonPressed;
+            params["targetTerritory"]=targetTerritory;
+        }
+        $.ajax
+        ({
+            url: 'SingleGame',
+            data:params,
+            type: 'GET',
+            success: resultCalculatedRisk
+
+        });
+    }
+    if(buttonPressed === 3)
+    {
+        for ( var i = 0; i < dataTableSize; i++) {
+            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
+            params["action"]="wellOrchestrated";
+            params["buttonPressed"]=buttonPressed;
+            params["targetTerritory"]=targetTerritory;
+        }
+        $.ajax
+        ({
+            url: 'SingleGame',
+            data:params,
+            type: 'GET',
+            success: resultWellOrchestrated
+        });
+    }
+    if(buttonPressed === 4)
+    {
+        for ( var i = 0; i < dataTableSize; i++) {
+            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
+            params["action"]="naturalTerritory";
+            params["buttonPressed"]=buttonPressed;
+            params["targetTerritory"]=targetTerritory;
+        }
+        $.ajax
+        ({
+            url: 'SingleGame',
+            data:params,
+            type: 'GET',
+            success: checkEnoughTouringsforNaturalTerritory
+        });
+    }
+    if(buttonPressed === 5)
+    {
+
+        for ( var i = 0; i < dataTableSize; i++) {
+            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
+            params["action"]="addArmy";
+            params["buttonPressed"]=buttonPressed;
+            params["targetTerritory"]=targetTerritory;
+        }
+        $.ajax
+        ({
+            url: 'SingleGame',
+            data:params,
+            type: 'GET',
+            success: checkEnoughTourings
+        });
+    }
+    if(buttonPressed === 6)
+    {
+        $.ajax
+        ({
+            url: 'SingleGame',
+            data: {
+                action: "retire",
+                buttonPressed: buttonPressed
+            },
+            type: 'GET',
+            success: deletePlayer
+
+        });
+    }
+    //updatePlaying Player(next turn)
+    drawBoard();
+
+//apicall
+}
+function onEndTurnClick(){
+    //apicall
+
+}
+function resultCalculatedRisk() {
+
+}
+function checkEnoughTouringsforNaturalTerritory() {
+
+}
+function checkEnoughTourings() {
+
+}
+function resultWellOrchestrated() {
+
+}
+function deletePlayer() {
+
 }

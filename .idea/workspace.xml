@@ -7,14 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11bff4d9-e3e0-4bc0-8a41-45a992a449da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GameObjects/unitDataTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/Lobby/LobbyError.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/Lobby/LobbyError.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SingleGameServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SingleGameServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Lobby/LobbyError.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/Lobby/LobbyError.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,26 +40,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyPageControl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1722">
+            <state relative-caret-position="2181">
               <caret line="218" column="62" selection-start-line="218" selection-start-column="17" selection-end-line="218" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+            <state relative-caret-position="408">
+              <caret line="41" column="89" lean-forward="true" selection-start-line="41" selection-start-column="89" selection-end-line="41" selection-end-column="89" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-408">
+              <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2457">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="558">
+              <caret line="65" column="22" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="65" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -110,15 +113,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
               <caret line="34" column="78" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/3rd/google-gson-2.1/gson-2.1-sources.jar!/com/google/gson/Gson.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="95" column="26" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -228,8 +222,8 @@
         <option value="$PROJECT_DIR$/web/Lobby/LobbyError.html" />
         <option value="$PROJECT_DIR$/src/SingleGameServlet.java" />
         <option value="$PROJECT_DIR$/src/GameObjects/unitDataTable.java" />
-        <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.js" />
         <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.html" />
+        <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.js" />
       </list>
     </option>
   </component>
@@ -296,6 +290,12 @@
             </path>
             <path>
               <item name="Conquers_Web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Conquers_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Conquers_Web" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -308,7 +308,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563918728985" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563926931533" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Conquers_313433245_308337930 (1)/Conquers_313433245_308337930/Eden_Noam" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -524,12 +524,12 @@
       <workItem from="1563640771896" duration="10960000" />
       <workItem from="1563707976949" duration="3133000" />
       <workItem from="1563783089193" duration="17986000" />
-      <workItem from="1563874410394" duration="22790000" />
+      <workItem from="1563874410394" duration="30744000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196342000" />
+    <option name="totallyTimeSpent" value="204296000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -737,15 +737,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Lobby/RoomsErr.html" />
-    <entry file="file://$PROJECT_DIR$/web/Lobby/jquery-3.4.1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/Lobby/context-path-helper.js" />
     <entry file="file://$PROJECT_DIR$/web/lobby.html" />
     <entry file="file://$PROJECT_DIR$/web/index.html" />
@@ -824,13 +815,6 @@
           <folding>
             <element signature="e#1012#1131#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -939,13 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyPageControl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1722">
-          <caret line="218" column="62" selection-start-line="218" selection-start-column="17" selection-end-line="218" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameObjects/Person.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1022,17 +999,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
+    <entry file="file://$PROJECT_DIR$/web/Lobby/LobbyPageControl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2457">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="2181">
+          <caret line="218" column="62" selection-start-line="218" selection-start-column="17" selection-end-line="218" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="408">
+          <caret line="41" column="89" lean-forward="true" selection-start-line="41" selection-start-column="89" selection-end-line="41" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Lobby/jquery-3.4.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="9058" column="18" lean-forward="true" selection-start-line="9058" selection-start-column="18" selection-end-line="9058" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="65" column="22" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="65" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
         </state>
       </provider>
     </entry>
