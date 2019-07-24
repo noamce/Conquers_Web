@@ -1,3 +1,5 @@
+package ServletClasses;
+
 import GameObjects.Player;
 import com.google.gson.Gson;
 import utils.ServletUtils;
@@ -15,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/*@WebServlet(name = "LoginServlet")
-public class LoginServlet extends HttpServlet {
+/*@WebServlet(name = "ServletClasses.LoginServlet")
+public class ServletClasses.LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

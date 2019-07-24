@@ -3,7 +3,7 @@ var rows;
 var userName;
 var territoriesMap;
 var alertGameStart=0;
-var targetTerritory
+var targetTerritory;
 var enginestart=false;
 var buttonPreesed;
  window.onload=function ()
@@ -21,9 +21,24 @@ function onLeaveGameClick() {
         success: window.location = "../Lobby/lobby.html"
 
     });
-
-
 }
+
+function getCurrentPlayerInfo() {
+    if(enginestart){
+        $.ajax
+        ({
+            url: '/playerInfo',
+            type: 'GET',
+            success: processInfo
+
+        });
+    }
+}
+
+function processInfo(data){
+    console.log(data);
+}
+
 function crateGameDetails() {
     $.ajax
     ({
@@ -81,6 +96,7 @@ function setGameDetails(data) {
 
         drawBoard();
         drawUnitTable();
+        getCurrentPlayerInfo();
     }
 }
 function drawUnitTable()

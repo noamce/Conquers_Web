@@ -1,3 +1,5 @@
+package ServletClasses;
+
 import GameEngine.GameEngine;
 import GameObjects.Player;
 
