@@ -23,25 +23,25 @@
 
         <div class="leftDiv">
             <div class="details">
-                <div class="PlayerTurn">Player Turn: </div>
+                <div class="PlayerTurn" id="nameOfcurrentPlayer">Player Turn: </div>
                 <div class="PlayerColor">Player color:</div>
-                <div class="Turrings">Turrings :</div>
+                <div class="Turrings" id="TurringsInfo">Turrings :</div>
                 <div>
                     <span>Turn: </span>
-                    <span class="turnSpan">0</span>
-                    <span> / 0</span>
+                    <span id="roundNumberinfo" class="turnSpan">0</span>
+                    <span id="totalCycleinfo" class="totalCycles"> / 0</span>
                 </div>
             </div>
             <div class="actions">
                 <div id="maintenance" class="action" onclick="onMaintenanceClick()">Maintenance</div>
                 <div id="calculatedRisk" class="action" onclick="onCalculatedRiskClick()">Calculated Risk</div>
                 <div id="wellOrchestrated" class="action" onclick="onWellOrchestratedClick()">well-orchestrated</div>
- 	        <div id="naturalTerritory" class="action" onclick="onNaturalTerritoryClick()">Natural Territory</div>
+                <div id="naturalTerritory" class="action" onclick="onNaturalTerritoryClick()">Natural Territory</div>
                 <div id="addArmy" class="action" onclick="onAddArmyClick()">Add Army</div>
- 	        <div id="retire" class="action" onclick="onRetireClick()">Retire</div>
+ 	            <div id="retire" class="action" onclick="onRetireClick()">Retire</div>
                 <div id="confirm" class="action" onclick="onConfirmClick()">Confirm</div>
- 	        <div id="endTurn" class="action" onclick="onEndTurnClick()">End Turn</div>
-	    </div>
+ 	            <div id="endTurn" class="action" onclick="onEndTurnClick()">End Turn</div>
+            </div>
         </div>
         <div class="board">
             <div class="boardBody" id="boardBody">
@@ -67,37 +67,33 @@
                     </tbody>
                 </table>
             </div>
-
-    </div>
-   <div class="Territory">
+       </div>
+       <div class="Territory">
        <span class="TerritoryID">Territory ID: </span>
        <span class="Army">Army: </span>
+          <div class="ArmysTerritory">
+            <div table class="table table-hover" id="territoryTableData">
+             <table>
+               <thead>
+                  <tr>
+                  <th>Rank</th>
+                  <th>Type</th>
+                  <th>FP</th>
+                  <th>Amount</th>
+                  <th>Maintaince</th>
+                  </tr>
+               </thead>
+             <tbody id="territoryTableDataBody">
 
-	<div class="ArmysTerritory">
-    	<div class="rank">
-                <a>rank:</a>
-                <div class="unitsRank"></div>
+              </tbody>
+               </table>
+            </div>
+          </div>
+           <span class="TotalFP"> </span>
+           <span class="TotalMaintenanceCost">Army: </span>
         </div>
-        <div class="UnitsTypes">
-                <a>Type:</a>
-                <div class="UnitsType"></div>
-        </div>
-        <div class="Firepower">
-                <a>FP:</a>
-                <div class="UnitFire power"></div>
-        </div>
-	<div class="amount">
-                <a>amount:</a>
- 	       <div class="UnitAmount"></div>
-        </div>
-  	<div class="Maintaince">
-                <a>Maintaince:</a>
-                <div class="Unitprice"></div>
-        </div>
-</div>
-  </div>
-   	
-
+    </div>
+    </div>
 </div>
 <script
         src="https://code.jquery.com/jquery-3.1.1.js"

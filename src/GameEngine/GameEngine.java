@@ -9,7 +9,7 @@ import static java.nio.file.Files.exists;
 
 public class GameEngine {
     private GameDescriptor descriptor;
-    public static GameManager gameManager;
+    public  GameManager gameManager;
 
     public void setDescriptor(GameDescriptor descriptor) {
         this.descriptor = descriptor;

@@ -328,6 +328,11 @@ public class GameDescriptor implements Serializable {
         }
         return true;
     }
+
+    public int getInitialFunds() {
+        return initialFunds;
+    }
+
     public Map<String , Unit> loadUnitsDescription(Generated.GameDescriptor descriptor) throws IllegalArgumentException, IllegalDupprankortypeException, IllegalunitdetailsorderException, IllegalunitdetailsorNamedubbException {
         Map<String , Unit> unitsMap = new HashMap<>();
         List<Generated.Unit> units = descriptor.getGame().getArmy().getUnit();
@@ -387,12 +392,12 @@ public class GameDescriptor implements Serializable {
 
 
     public void deletePlayerDescriptor() {
-        for(Territory territory : territoryMap.values())
-        {
-            territory.RemoveFromTerritory(GameEngine.gameManager.getCurrentPlayerTurn().getID());
-        }
-
-        playersList.remove(GameEngine.gameManager.getCurrentPlayerTurn());
+//        for(Territory territory : territoryMap.values())
+//        {
+//            territory.RemoveFromTerritory(GameEngine.gameManager.getCurrentPlayerTurn().getID());
+//        }
+//
+//        playersList.remove(GameEngine.gameManager.getCurrentPlayerTurn());
 
 
     }

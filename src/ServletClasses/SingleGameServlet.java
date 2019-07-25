@@ -1,12 +1,14 @@
 package ServletClasses;
 
 import GameEngine.GameEngine;
+import GameObjects.TerritoryDataTable;
 import GameObjects.unitDataTable;
 import GameObjects.Player;
 import GameObjects.Territory;
 import com.google.gson.Gson;
 import utils.GameDetails;
 import utils.ServletUtils;
+import utils.TerritoryButtonsInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,6 +54,101 @@ public class SingleGameServlet extends HttpServlet {
         if(action.equals("getGameDetails")) {
             returnGameDetails(req, resp);
         }
+        if(action.equals("maintenance")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("calculatedRisk")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("wellOrchestrated")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("naturalTerritory")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("addArmy")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("retire")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("endTurn")) {
+            returnGameDetails(req, resp);
+        }
+        if(action.equals("territoryClicked")) {
+            getTerritoryForButtonsInfo(req, resp);
+        }
+        if(action.equals("territoryDataTable")) {
+            getTerritoryDetailsForDataTable(req, resp);
+        }
+
+
+    }
+
+    private void getTerritoryDetailsForDataTable(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+        GameEngine engine;
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        Room currRoom = utils.getCurrentRoom(req, rooms);
+        Gson gson = new Gson();
+        engine = currRoom.getGameEngine();
+        int maintenance,amount,rank,maintenanceCost,totalFirePower,fp;
+        String unitType="Not Available";
+        maintenance=amount=rank=maintenanceCost=totalFirePower=fp=0;
+        List<GameObjects.TerritoryDataTable> TerritoryDataTableList = new ArrayList<>();
+        if(Boolean.parseBoolean(req.getParameter("showTerritoryInfoFlag"))) {
+            List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
+            int territoryID=Integer.parseInt(req.getParameter("territoryId"));
+            totalFirePower=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().getTotalPower();
+            maintenanceCost=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().calculateRehabilitationPrice();
+            for (int i = 0; i < unitMapp.size(); i++) {
+                unitType = unitMapp.get(i);
+                rank = engine.getDescriptor().getUnitMap().get(unitType).getRank();
+                maintenance=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().calculateRehabilitationPriceperUnit(unitType);
+                fp=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().getTotalPowerPerUnit(unitType);
+                amount=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().howMachFromThisUnitType(unitType);
+                TerritoryDataTableList.add(new TerritoryDataTable(unitType, maintenance, fp, amount, rank, maintenanceCost, totalFirePower));
+            }
+        }
+        else{
+            TerritoryDataTableList.add(new TerritoryDataTable(unitType, maintenance, fp, amount, rank, maintenanceCost, totalFirePower));
+        }
+
+
+        out.println(gson.toJson(TerritoryDataTableList));
+    }
+
+    private void getTerritoryForButtonsInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        GameEngine engine;
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+
+        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+
+        Room currRoom = utils.getCurrentRoom(req, rooms);
+        Gson gson = new Gson();
+        engine = currRoom.getGameEngine();
+
+
+        int territoryId=Integer.parseInt(req.getParameter("targetTerritory"));
+        Territory targetTerritory = engine.getDescriptor().getTerritoryMap().get(territoryId);
+        engine.gameManager.setSelectedTerritoryForTurn(targetTerritory);
+        boolean territoryConquered=engine.gameManager.isConquered();
+        boolean gameOver=engine.getGameManager().isGameOver();
+        boolean onlyOnePlayer= (engine.getDescriptor().getPlayersList().size()==1);
+        boolean isTerritoryBelongsCurrentPlayer=engine.gameManager.isTerritoryBelongsCurrentPlayer();
+        boolean isTargetTerritoryValid=engine.gameManager.isTargetTerritoryValid();
+        boolean playerDontHaveTerritories=(engine.getGameManager().getCurrentPlayerTurn().getTerritoriesID().size() == 0);
+
+        out.println(gson.toJson(new TerritoryButtonsInfo(
+                                    territoryConquered,
+                                    gameOver,
+                                    onlyOnePlayer,
+                                    isTerritoryBelongsCurrentPlayer,
+                                    isTargetTerritoryValid,
+                                    playerDontHaveTerritories)
+        ));
 
 
     }
@@ -78,12 +175,15 @@ public class SingleGameServlet extends HttpServlet {
     }
 
 
-    public void startGame(HttpServletRequest req, HttpServletResponse resp)
-    {
+    public void startGame(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
         Room currRoom = utils.getCurrentRoom(req, rooms);
-        currRoom.getGameEngine().getDescriptor().setPlayersList(room.getPlayers());
         currRoom.getGameEngine().newGame();
+        currRoom.getGameEngine().getDescriptor().setPlayersList(currRoom.getPlayers());
+        currRoom.setPlayers();
+        currRoom.getGameEngine().gameManager.nextPlayerInTurn();
         getServletContext().setAttribute("rooms",rooms);
+
     }
 
     private void leaveGame(HttpServletRequest req, HttpServletResponse resp) throws IOException {

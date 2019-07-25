@@ -21,7 +21,7 @@ public class GameManager implements Serializable {
     public GameManager(GameDescriptor gameDes) {
         ID = ++gamesIDCounter;
         gameDescriptor = gameDes;
-       // playersTurns = new ArrayBlockingQueue<>(gameDescriptor.getPlayersList().size());
+        playersTurns = new ArrayBlockingQueue<>(gameDescriptor.getMaxNumberOfPlayersPlaying());
        // loadPlayersIntoQueueOfTurns();
        // history = new Stack<>();
         //history.push(new History(gameDescriptor,roundNumber));
@@ -314,8 +314,8 @@ public class GameManager implements Serializable {
 
     public int getCurrentPlayerFunds(){return currentPlayerTurn.getFunds();}
 
-    public boolean isSelectedPlayerHasEnoughMoney(Supplier <Integer> amountOfMoney) {
-        return amountOfMoney.get() <= getCurrentPlayerFunds();
+    public boolean isSelectedPlayerHasEnoughMoney(int amountOfMoney) {
+        return amountOfMoney <= getCurrentPlayerFunds();
     }
 
     public Player getCurrentPlayerTurn() {

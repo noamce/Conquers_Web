@@ -1,6 +1,6 @@
 package ServletClasses;
 
-import GameEngine.GameEngine;
+import GameEngine.*;
 import GameObjects.Player;
 
 import java.util.ArrayList;
@@ -36,7 +36,8 @@ public class Room {
         numberOfOnlinePlayers++;
         if(numberOfOnlinePlayers==maxNumberOfOnlineUsers) {
             gameStarted = true;
-
+            //setPlayers();
+            //engine.gameManager.nextPlayerInTurn();
         }
     }
     List<Player> getPlayers ()
@@ -92,7 +93,12 @@ public boolean isGameStarted()
     }
 
     public void setPlayers() {
+        enterFunds();
         engine.getGameManager().loadPlayersIntoQueueOfTurns(players);
+    }
+
+    private void enterFunds() {
+       players.stream().forEach(player->player.setFund(engine.getDescriptor().getInitialFunds()));
     }
 
 

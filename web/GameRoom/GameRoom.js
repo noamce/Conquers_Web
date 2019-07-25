@@ -7,6 +7,8 @@ var targetTerritory;
 var engineStart=false;
 var buttonPressed;
 var dataTableSize;
+var territoryDataTableSize;
+var showTerritoryInfoFlag=false;
 
  window.onload=function ()
  {
@@ -26,7 +28,7 @@ function onLeaveGameClick() {
 }
 
 function getCurrentPlayerInfo() {
-    if(enginestart){
+    if(engineStart){
         $.ajax
         ({
             url: '/playerInfo',
@@ -40,9 +42,19 @@ function getCurrentPlayerInfo() {
 
 function processInfo(data){
     console.log(data);
+
+    var element = document.getElementById("nameOfcurrentPlayer");
+    element.innerHTML="Player Turn:"+data.name.toString();
+    var element = document.getElementById("roundNumberinfo");
+    element.innerHTML=data.roundNumber;
+    element = document.getElementById("totalCycleinfo");
+    element.innerHTML=" / " +data.totalCycles.toString();
+    findPlayerColor(data.color);
+    element = document.getElementById("TurringsInfo");
+    element.innerHTML="Turrings: "+ data.funds;
 }
 
-function crateGameDetails() {
+function createGameDetails() {
     $.ajax
     ({
         url: 'SingleGame',
@@ -53,6 +65,30 @@ function crateGameDetails() {
         success: setGameDetails
 
     });
+}
+function findPlayerColor(color){
+
+    if (color===1) {
+        $('.PlayerColor').text("Player color: RED");
+        //document.getElementById("PlayerColor").style.color= "red";
+        //player_color.setTextFill(Color.RED);
+    }
+    if (color===2) {
+        $('.PlayerColor').text("Player color: BLUE");
+       // document.getElementById("PlayerColor").style.color= "blue";
+       // player_color.setTextFill(Color.BLUE);
+    }
+    if (color===3) {
+        $('.PlayerColor').text("Player color: GREEN");
+        //document.getElementById("PlayerColor").style.color= "green";
+        //player_color.setTextFill(Color.GREEN);
+    }
+    if (color===4) {
+        $('.PlayerColor').text("Player color: YELLOW");
+       // document.getElementById("PlayerColor").style.color= "yellow";
+        //player_color.setTextFill(Color.YELLOW);
+    }
+
 }
 function turnOffButtons() {
 
@@ -75,9 +111,9 @@ function setGameDetails(data) {
     $('.userNameSpan').text("hi "+userName);
     $('.gameStatus').text("the game start");
     territoriesMap=data.gameEngine.descriptor.territoryMap;
-    if (data.started==true)
+    if (data.started===true)
     {
-        if (engineStart==false)
+        if (engineStart===false)
         {
             $.ajax
             ({
@@ -89,18 +125,23 @@ function setGameDetails(data) {
                 type: 'GET',
 
             });
-            success:engineStart=true;
+            success: engineStart=true;
         }
         alertGameStart++
-        if (alertGameStart == 1){
+        if (alertGameStart === 1){
             alert("The game started");
         }
         document.getElementById('leaveButton').style.visibility='hidden';
-
+        getCurrentPlayerInfo();
         drawBoard();
         drawUnitTable();
-        getCurrentPlayerInfo();
+
     }
+}
+function gameHasStarted() {
+    engineStart=true;
+    getCurrentPlayerInfo();
+
 }
 function drawUnitTable()
 {
@@ -126,7 +167,6 @@ function drawDataTable(dataTable) {
           tr.appendChild(td);
           td=document.createElement("td");
           var type= document.createTextNode(dataTable[i].type)
-          type.setAttribute("id","unitType"+i);
           td.appendChild(type);
           tr.appendChild(td);
           td=document.createElement("td");
@@ -135,7 +175,7 @@ function drawDataTable(dataTable) {
           td=document.createElement("td");
           var amountInput = document.createElement("INPUT");
           amountInput.setAttribute("size",2);
-          amountInput.setAttribute("id","unitDataInput"+i);
+          amountInput.setAttribute("id",dataTable[i].type);
           td.appendChild(amountInput);
           tr.appendChild(td);
           td=document.createElement("td");
@@ -204,39 +244,211 @@ function showTerritoryId(event)
     targetTerritory=id;
     $('.TerritoryID').text("Territory Id: "+targetTerritory);
 }
-function showTerritoryInfo(event) {
+function showTerritoryInfo() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "territoryDataTable",
+            showFlag: showTerritoryInfoFlag,
+            territoryId:targetTerritory
+        },
+        type: 'GET',
+        success: drawTerritoryDataTable
 
+    });
 
 }
+function drawTerritoryDataTable(territoryDataTableInfo) {
+    //drawTerritory army table including fp and maintenace
+    $("#territoryTableDataBody").empty();
+    territoryDataTableSize=territoryDataTableInfo.length;
+    console.log(territoryDataTableInfo);
+    for ( var i = 0; i < territoryDataTableSize; i++) {
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].rank));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        var type= document.createTextNode(territoryDataTableInfo[i].type)
+        td.appendChild(type);
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].fp));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].amount));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].maintenance));
+        tr.appendChild(td);
+
+
+        document.getElementById("territoryTableDataBody").appendChild(tr);
+    }
+    $('.TotalFP').text("Total Fire Power: " + territoryDataTableInfo[0].totalFirePower);
+    $('.TotalMaintenanceCost').text("Total Cost of Maintenance: " + territoryDataTableInfo[0].maintenanceCost);
+
+}
+function whatVisible(territoryButtonInfo){
+    territoryButtonInfo=false;
+    var round=document.getElementById("roundNumberinfo");
+    if(round === 1){
+        document.getElementById("retire").style.visibility="hidden";
+        document.getElementById("endTurn").style.visibility="hidden";
+        //check if this is not a conquerd territory
+        if(territoryButtonInfo.territoryConquered)
+        {
+            turnOffButtons();
+        }
+        else
+        {
+            document.getElementById("naturalTerritory").style.visibility="visible";
+            document.getElementById("wellOrchestrated").style.visibility="hidden";
+            document.getElementById("calculatedRisk").style.visibility="hidden";
+            document.getElementById("maintenance").style.visibility="hidden";
+            document.getElementById("addArmy").style.visibility="hidden";
+        }
+    }
+    else{
+        //if the game is over or there is only one player
+        if(territoryButtonInfo.onlyOnePlayer || territoryButtonInfo.gameOver){
+            //turnoffButtons include retire and endturn
+            document.getElementById("retire").style.visibility="hidden";
+            document.getElementById("endTurn").style.visibility="hidden";
+            turnOffButtons();
+        }
+        else{
+            // retire and endturn on
+            document.getElementById("retire").style.visibility="visible";
+            document.getElementById("endTurn").style.visibility="visible";
+            //if this territory is conquerd
+            if(territoryButtonInfo.territoryConquered){
+                //if is this  territory is belong to currrent player
+                if(territoryButtonInfo.isTerritoryBelongsCurrentPlayer){
+                    // territory actions on
+                    document.getElementById("maintenance").style.visibility="visible";
+                    document.getElementById("addArmy").style.visibility="visible";
+                    document.getElementById("naturalTerritory").style.visibility="hidden";
+                    document.getElementById("wellOrchestrated").style.visibility="hidden";
+                    document.getElementById("calculatedRisk").style.visibility="hidden";
+                    //drawTerritory army table including fp and maintenace
+                    territoryButtonInfo=true;
+                }
+                else
+                {
+                    //clear the maintence and total firepower of this territory
+                    //if this territoryvaild or the currentplayer dont have territories
+                    if(territoryButtonInfo.isTargetTerritoryValid || territoryButtonInfo.playerDontHaveTerritories)
+                    {
+                        // buttons of battles on
+                        document.getElementById("naturalTerritory").style.visibility="hidden";
+                        document.getElementById("wellOrchestrated").style.visibility="visible";
+                        document.getElementById("calculatedRisk").style.visibility="visible";
+                        document.getElementById("maintenance").style.visibility="hidden";
+                        document.getElementById("addArmy").style.visibility="hidden";
+                    }
+                    else
+                    {
+                        turnOffButtons();
+                    }
+                }
+            }
+            else{
+                if(territoryButtonInfo.playerDontHaveTerritories){
+                    //naturalterritory on
+                    document.getElementById("naturalTerritory").style.visibility="visible";
+                    document.getElementById("wellOrchestrated").style.visibility="hidden";
+                    document.getElementById("calculatedRisk").style.visibility="hidden";
+                    document.getElementById("maintenance").style.visibility="hidden";
+                    document.getElementById("addArmy").style.visibility="hidden";
+                }
+                else{
+                    if(territoryButtonInfo.isTargetTerritoryValid){
+                        //naturalterritory on
+                        document.getElementById("naturalTerritory").style.visibility="visible";
+                        document.getElementById("wellOrchestrated").style.visibility="hidden";
+                        document.getElementById("calculatedRisk").style.visibility="hidden";
+                        document.getElementById("maintenance").style.visibility="hidden";
+                        document.getElementById("addArmy").style.visibility="hidden";
+                    }
+                    else{
+                        turnOffButtons();
+                    }
+                }
+
+
+            }
+        }
+    }
+
+}
+function territoryClicked() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "territoryClicked",
+            targetTerritory:targetTerritory
+        },
+        type: 'GET',
+        success: whatVisible
+
+    });
+}
+
 function showDetail(event)
 {
-showTerritoryId(event);
-showTerritoryInfo()
+    showTerritoryId(event);
+    territoryClicked();
+    showTerritoryInfo();
 //עדכון הצבא ברשותו
 }
+function notClickedButtons() {
+    (document.getElementById("maintenance")).style.border = "1px solid black";
+    (document.getElementById("calculatedRisk")).style.border = "1px solid black";
+    (document.getElementById("wellOrchestrated")).style.border = "1px solid black";
+    (document.getElementById("naturalTerritory")).style.border = "1px solid black";
+    (document.getElementById("addArmy")).style.border = "1px solid black";
+    (document.getElementById("retire")).style.border = "1px solid black";
+    (document.getElementById("confirm")).style.border = "1px solid black";
+    (document.getElementById("endTurn")).style.border = "1px solid black";
 
-
+}
 function onMaintenanceClick(){
+    notClickedButtons();
     buttonPressed=1;
+    (document.getElementById("maintenance")).style.border = "3px solid blue";
 }
 function onCalculatedRiskClick(){
+    notClickedButtons();
     buttonPressed=2;
-
+    (document.getElementById("calculatedRisk")).style.border = "3px solid blue";
 }
 function onWellOrchestratedClick(){
+    notClickedButtons();
     buttonPressed=3;
+    (document.getElementById("wellOrchestrated")).style.border = "3px solid blue";
 }
 function onNaturalTerritoryClick(){
-    buttonPressed=4;
+    notClickedButtons();
+     (document.getElementById("naturalTerritory")).style.border = "3px solid blue";
+     buttonPressed=4;
 }
 function onAddArmyClick(){
-    buttonPressed=5;
+    notClickedButtons();
+     buttonPressed=5;
+    (document.getElementById("addArmy")).style.border = "3px solid blue";
 }
 function onRetireClick(){
-    buttonPressed=6;
+     notClickedButtons();
+     buttonPressed=6;
+    (document.getElementById("retire")).style.border = "3px solid blue";
 }
 function onConfirmClick(){
+    notClickedButtons();
     var params = {};
+    (document.getElementById("confirm")).style.border = "3px solid blue";
     if(buttonPressed === 1)
     {
         $.ajax

@@ -8,7 +8,7 @@ public class Player implements Serializable {
     private int Id=1;
     private String playerName;
     private List<Integer> TerritoriesId;
-    private int fund=0;
+    private int fund =0;
     private int color=0;
 
 
