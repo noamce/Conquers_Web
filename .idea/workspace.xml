@@ -7,14 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11bff4d9-e3e0-4bc0-8a41-45a992a449da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/BoardDetails.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServletClasses/BoardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServletClasses/BoardServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/GameDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/GameDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/OneTerritoryDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/OneTerritoryDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/TerritoryMapToSend.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,8 +123,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7004">
-              <caret line="515" column="79" lean-forward="true" selection-start-line="515" selection-start-column="79" selection-end-line="515" selection-end-column="79" />
+            <state relative-caret-position="237">
+              <caret line="264" column="114" lean-forward="true" selection-start-line="263" selection-start-column="11" selection-end-line="264" selection-end-column="114" />
+              <folding>
+                <element signature="e#939#985#0" />
+                <element signature="e#2651#2702#0" />
+                <element signature="e#3079#3132#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -276,13 +275,13 @@
         <option value="$PROJECT_DIR$/src/ServletClasses/PlayerInfo.java" />
         <option value="$PROJECT_DIR$/src/ServletClasses/DataTableServlet.java" />
         <option value="$PROJECT_DIR$/src/utils/InitDetails.java" />
-        <option value="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" />
         <option value="$PROJECT_DIR$/src/utils/GameDetails.java" />
         <option value="$PROJECT_DIR$/src/utils/TerritoryMapToSend.java" />
         <option value="$PROJECT_DIR$/src/utils/OneTerritoryDetails.java" />
         <option value="$PROJECT_DIR$/src/ServletClasses/BoardServlet.java" />
         <option value="$PROJECT_DIR$/src/utils/BoardDetails.java" />
         <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.js" />
+        <option value="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" />
       </list>
     </option>
   </component>
@@ -383,7 +382,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564227305114" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564227754804" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -497,12 +496,12 @@
       <workItem from="1563707976949" duration="3133000" />
       <workItem from="1563783089193" duration="17986000" />
       <workItem from="1563874410394" duration="31539000" />
-      <workItem from="1563950979725" duration="119832000" />
+      <workItem from="1563950979725" duration="120716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119907000" />
+    <option name="totallyTimeSpent" value="120791000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,7 +559,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java</url>
-          <line>264</line>
+          <line>298</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
@@ -572,7 +571,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java</url>
-          <line>338</line>
+          <line>372</line>
           <properties />
           <option name="timeStamp" value="70" />
         </line-breakpoint>
@@ -1053,19 +1052,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7004">
-          <caret line="515" column="79" lean-forward="true" selection-start-line="515" selection-start-column="79" selection-end-line="515" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
           <folding>
             <element signature="e#23299#23350#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="264" column="114" lean-forward="true" selection-start-line="263" selection-start-column="11" selection-end-line="264" selection-end-column="114" />
+          <folding>
+            <element signature="e#939#985#0" />
+            <element signature="e#2651#2702#0" />
+            <element signature="e#3079#3132#0" />
           </folding>
         </state>
       </provider>
