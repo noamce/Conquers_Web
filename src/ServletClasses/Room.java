@@ -40,6 +40,11 @@ public class Room {
             //engine.gameManager.nextPlayerInTurn();
         }
     }
+    void clearPlayerList(){
+       players.stream().forEach(player -> players.remove(player));
+        gameStarted=false;
+
+    }
     List<Player> getPlayers ()
     {
         return this.players;
@@ -103,14 +108,13 @@ public boolean isGameStarted()
 
 
     public boolean hasPlayer(String userName) {
-        boolean[] result = new boolean[1];
-        players.forEach(player -> {
-            if(player.getPlayer_name().equals(userName)){
-                result[0] = true;
-            } else {
-                result[0] = false;
+        boolean result = false;
+        for (int i = 0; i < players.size(); i++) {
+
+            if (players.get(i).getPlayer_name().equals(userName)) {
+                result = true;
             }
-        });
-        return result[0];
+        }
+        return result;
     }
 }

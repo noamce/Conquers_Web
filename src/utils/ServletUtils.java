@@ -1,5 +1,6 @@
 package utils;
 
+import GameEngine.GameEngine;
 import ServletClasses.Room;
 
 import javax.servlet.ServletContext;
@@ -26,6 +27,7 @@ public class ServletUtils {
 		{
 			if (rooms.get(i).hasPlayer(userName)) {
 				currRoom = rooms.get(i);
+				break;
 			}
 			i++;
 		}

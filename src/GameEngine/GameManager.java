@@ -349,4 +349,11 @@ public class GameManager implements Serializable {
         playersTurns.remove(currentPlayerTurn);
 
     }
+    public void deletePlayer(Player player)
+    {
+        history.peek().removePlayerFromHistorylist(player);
+        playersTurns.remove(player);
+
+    }
+
 }

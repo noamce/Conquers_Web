@@ -2,16 +2,151 @@ var cols;
 var rows;
 var userName;
 var territoriesMap;
-var alertGameStart=0;
 var targetTerritory;
 var engineStart=false;
 var buttonPressed;
 var dataTableSize;
+var territoryDataTableSize;
+var showTerritoryInfoFlag=false;
+var currentPlayerPlaying;
+var refreshRate = 2000;
+var roundNumber=1;
+var gameCanStart=false;
+var checkIfItIsThisUserTurn=false;
+var once=true;
+var initHappend=true;
+var isItFirstRound;
+var confirmPressed=false;
 
- window.onload=function ()
+
+
+window.onload=function ()
  {
-     createGameDetails();
+     turnOffButtons();
+     document.getElementById("retire").style.visibility="hidden";
+     document.getElementById("endTurn").style.visibility="hidden";
+     setInterval(intevalInit,refreshRate);
+    // setGameForFirstTime();
+     //setInterval(checkGamecanStart,refreshRate);
+     //
+
+
+     //createGameDetails();
+     //getCurrentPlayerInfo();
+
+
+
  };
+function intevalInit() {
+    if(initHappend)
+    {
+        setGameForFirstTime();
+        initHappend=false;
+    }
+    else{
+
+        setInterval(checkGamecanStart,refreshRate);
+
+        setInterval(checkIfPLAYERCanPlay,refreshRate);
+        if(gameCanStart){
+            setInterval(displayingIt,refreshRate);
+        }
+    }
+
+}
+function checkIfPLAYERCanPlay() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "isItThisPlayer"
+        },
+        type: 'GET',
+        success: checkingPlayer
+
+    });
+
+}
+function checkingPlayer(currentPlayer) {
+
+    currentPlayerPlaying=currentPlayer.toString();
+
+    if(currentPlayer.toString() === userName) {
+        checkIfItIsThisUserTurn = true;
+    }
+    else {
+        checkIfItIsThisUserTurn = false;
+        confirmPressed=false;
+    }
+
+}
+function checkGamecanStart(){
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "allPlayersHere"
+        },
+        type: 'GET',
+        success: allOfthePlayersHers
+
+    });
+}
+
+function allOfthePlayersHers(allPlayersHere) {
+    if(allPlayersHere && once){
+        once=false;
+        gameCanStart=true;
+        document.getElementById('leaveButton').style.visibility='hidden';
+        startGame();
+        alert("The Game started")
+    }
+
+}
+function displayingIt(){
+
+    getCurrentPlayerInfo();
+
+    if(checkIfItIsThisUserTurn) {
+        $('.gameStatus').text("Your Turn");
+        upDateMapandInfo();
+
+
+    }
+    else
+    {
+        $("#boardBody").empty();
+        document.getElementById("retire").style.visibility="hidden";
+        document.getElementById("endTurn").style.visibility="hidden";
+        turnOffButtons();
+        $('.gameStatus').text("Wait For Your Turn");
+    }
+
+}
+function setGameForFirstTime() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "initCall"
+        },
+        type: 'GET',
+        success: initSet
+
+    });
+
+}
+function initSet(data){
+
+    userName = data.userName; //this is the name of the player who is the page open(of the session)
+    $('.userNameSpan').text("hi "+userName);
+    $('.gameStatus').text("the game is about start");
+    cols = data.cols;
+    rows = data.rows;
+
+
+
+}
 function onLeaveGameClick() {
     $.ajax
     ({
@@ -40,11 +175,12 @@ function getCurrentPlayerInfo() {
 
 function processInfo(data){
     console.log(data);
-
+    currentPlayerPlaying=data.name.toString();
     var element = document.getElementById("nameOfcurrentPlayer");
     element.innerHTML="Player Turn:"+data.name.toString();
-    var element = document.getElementById("roundNumberinfo");
+    element = document.getElementById("roundNumberinfo");
     element.innerHTML=data.roundNumber;
+    roundNumber=data.roundNumber;
     element = document.getElementById("totalCycleinfo");
     element.innerHTML=" / " +data.totalCycles.toString();
     findPlayerColor(data.color);
@@ -52,18 +188,6 @@ function processInfo(data){
     element.innerHTML="Turrings: "+ data.funds;
 }
 
-function createGameDetails() {
-    $.ajax
-    ({
-        url: 'SingleGame',
-        data: {
-            action: "getGameDetails"
-        },
-        type: 'GET',
-        success: setGameDetails
-
-    });
-}
 function findPlayerColor(color){
 
     if (color===1) {
@@ -95,23 +219,33 @@ function turnOffButtons() {
     document.getElementById('wellOrchestrated').style.visibility='hidden';
     document.getElementById('naturalTerritory').style.visibility='hidden';
     document.getElementById('addArmy').style.visibility='hidden';
-    document.getElementById('tableData').style.visibility='hidden';
+    // document.getElementById('tableData').style.visibility='hidden';
     document.getElementById('confirm').style.visibility='hidden';
     //document.getElementById('togglee').style.visibility = 'visible';
 
 
 
 }
-function setGameDetails(data) {
-    cols = data.cols;
-    rows = data.rows;
-    userName = data.userName;
-    $('.userNameSpan').text("hi "+userName);
-    $('.gameStatus').text("the game start");
-    territoriesMap=data.gameEngine.descriptor.territoryMap;
-    if (data.started===true)
-    {
-        if (engineStart===false)
+function upDateMapandInfo() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "getGameDetails"
+        },
+        type: 'GET',
+        success: updateMapAndINFO
+
+    });
+
+}
+function updateMapAndINFO(data){
+
+        territoriesMap=data.gameEngine.descriptor.territoryMap;
+        drawBoard();
+    }
+function startGame() {
+    if (engineStart===false)
         {
             $.ajax
             ({
@@ -121,26 +255,59 @@ function setGameDetails(data) {
 
                 },
                 type: 'GET',
-
+                success: engineStart=true
             });
-            success: engineStart=true;
-        }
-        alertGameStart++
-        if (alertGameStart === 1){
-            alert("The game started");
-        }
-        document.getElementById('leaveButton').style.visibility='hidden';
-        getCurrentPlayerInfo();
-        drawBoard();
-        drawUnitTable();
 
-    }
+        }
 }
-function gameHasStarted() {
-    engineStart=true;
-    getCurrentPlayerInfo();
+function createGameDetails() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "getGameDetails"
+        },
+        type: 'GET',
+        success: setGameDetails
 
+    });
 }
+
+// function setGameDetails(data) {
+//     userName = data.userName; //this is the name of the player who is the page open(of the session)
+//     $('.userNameSpan').text("hi "+userName);
+//     $('.gameStatus').text("the game start");
+//     cols = data.cols;
+//     rows = data.rows;
+//     territoriesMap=data.gameEngine.descriptor.territoryMap;
+//     if (data.started===true)
+//     {
+//         if (engineStart===false)
+//         {
+//             $.ajax
+//             ({
+//                 url: 'SingleGame',
+//                 data: {
+//                     action: "startGame"
+//
+//                 },
+//                 type: 'GET',
+//                 success: engineStart=true
+//             });
+//
+//         }
+//         alertGameStart++;
+//         if (alertGameStart === 1){
+//             alert("The game started");
+//         }
+//         document.getElementById('leaveButton').style.visibility='hidden';
+//         getCurrentPlayerInfo();
+//         drawBoard();
+//         drawUnitTable();
+//
+//     }
+// }
+
 function drawUnitTable()
 {
     $.ajax
@@ -155,6 +322,7 @@ function drawUnitTable()
 });
 }
 function drawDataTable(dataTable) {
+    console.log(dataTable);
     $("#dataTable").empty();
     dataTableSize=dataTable.length;
     console.log(dataTable);
@@ -189,10 +357,7 @@ function drawDataTable(dataTable) {
       }
 
 }
-function enterAmount() {
 
-
-}
 function drawBoard()
 {
         // get the reference for the body
@@ -242,17 +407,175 @@ function showTerritoryId(event)
     targetTerritory=id;
     $('.TerritoryID').text("Territory Id: "+targetTerritory);
 }
-function showTerritoryInfo(event) {
+function showTerritoryInfo() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "territoryDataTable",
+            showFlag: showTerritoryInfoFlag,
+            territoryId:targetTerritory
+        },
+        type: 'GET',
+        success: drawTerritoryDataTable
 
+    });
 
 }
+function drawTerritoryDataTable(territoryDataTableInfo) {
+    //drawTerritory army table including fp and maintenace
+    $("#territoryTableDataBody").empty();
+    territoryDataTableSize=territoryDataTableInfo.length;
+    console.log(territoryDataTableInfo);
+    for ( var i = 0; i < territoryDataTableSize; i++) {
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].rank));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].type));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].fp));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].amount));
+        tr.appendChild(td);
+        td=document.createElement("td");
+        td.appendChild(document.createTextNode(territoryDataTableInfo[i].maintenance));
+        tr.appendChild(td);
+
+
+        document.getElementById("territoryTableDataBody").appendChild(tr);
+    }
+    $('.TotalFP').text("Total Fire Power: " + territoryDataTableInfo[0].totalFirePower);
+    $('.TotalMaintenanceCost').text("Total Cost of Maintenance: " + territoryDataTableInfo[0].maintenanceCost);
+
+}
+function whatVisible(territoryButtonInfo){
+    //territoryButtonInfo=false;
+    showTerritoryInfoFlag = false;
+    if(confirmPressed) {
+        if(territoryButtonInfo.isTerritoryBelongsCurrentPlayer){
+            showTerritoryInfoFlag = true;
+        }
+        else{
+            showTerritoryInfoFlag = false;
+        }
+        document.getElementById("confirm").style.visibility = "hidden";
+        document.getElementById("retire").style.visibility = "hidden";
+        document.getElementById("endTurn").style.visibility = "visible";
+        turnOffButtons();
+
+    }else {
+        isItFirstRound = territoryButtonInfo.firstRound;
+        if (territoryButtonInfo.firstRound) {
+            document.getElementById("retire").style.visibility = "hidden";
+            document.getElementById("endTurn").style.visibility = "hidden";
+            //check if this is not a conquerd territory
+            if (territoryButtonInfo.territoryConquered) {
+                turnOffButtons();
+                if(territoryButtonInfo.isTerritoryBelongsCurrentPlayer){
+                    showTerritoryInfoFlag = true;
+                }
+                else{
+                    showTerritoryInfoFlag = false;
+                }
+            } else {
+                document.getElementById("naturalTerritory").style.visibility = "visible";
+                document.getElementById("wellOrchestrated").style.visibility = "hidden";
+                document.getElementById("calculatedRisk").style.visibility = "hidden";
+                document.getElementById("maintenance").style.visibility = "hidden";
+                document.getElementById("addArmy").style.visibility = "hidden";
+            }
+        } else {
+            //if the game is over or there is only one player
+            if (territoryButtonInfo.onlyOnePlayer || territoryButtonInfo.gameOver) {
+                //turnoffButtons include retire and endturn
+                document.getElementById("retire").style.visibility = "hidden";
+                document.getElementById("endTurn").style.visibility = "hidden";
+                turnOffButtons();
+            } else {
+                // retire and endturn on
+                document.getElementById("retire").style.visibility = "visible";
+                document.getElementById("endTurn").style.visibility = "visible";
+                //if this territory is conquerd
+                if (territoryButtonInfo.territoryConquered) {
+                    //if is this  territory is belong to currrent player
+                    if (territoryButtonInfo.isTerritoryBelongsCurrentPlayer) {
+                        // territory actions on
+                        document.getElementById("maintenance").style.visibility = "visible";
+                        document.getElementById("addArmy").style.visibility = "visible";
+                        document.getElementById("naturalTerritory").style.visibility = "hidden";
+                        document.getElementById("wellOrchestrated").style.visibility = "hidden";
+                        document.getElementById("calculatedRisk").style.visibility = "hidden";
+                        //drawTerritory army table including fp and maintenace
+                        showTerritoryInfoFlag = true;
+                    } else {
+                        showTerritoryInfoFlag = false;
+                        //clear the maintence and total firepower of this territory
+                        //if this territoryvaild or the currentplayer dont have territories
+                        if (territoryButtonInfo.isTargetTerritoryValid || territoryButtonInfo.playerDontHaveTerritories) {
+                            // buttons of battles on
+                            document.getElementById("naturalTerritory").style.visibility = "hidden";
+                            document.getElementById("wellOrchestrated").style.visibility = "visible";
+                            document.getElementById("calculatedRisk").style.visibility = "visible";
+                            document.getElementById("maintenance").style.visibility = "hidden";
+                            document.getElementById("addArmy").style.visibility = "hidden";
+                        } else {
+                            turnOffButtons();
+                        }
+                    }
+                } else {
+                    if (territoryButtonInfo.playerDontHaveTerritories) {
+                        //naturalterritory on
+                        document.getElementById("naturalTerritory").style.visibility = "visible";
+                        document.getElementById("wellOrchestrated").style.visibility = "hidden";
+                        document.getElementById("calculatedRisk").style.visibility = "hidden";
+                        document.getElementById("maintenance").style.visibility = "hidden";
+                        document.getElementById("addArmy").style.visibility = "hidden";
+                    } else {
+                        if (territoryButtonInfo.isTargetTerritoryValid) {
+                            //naturalterritory on
+                            document.getElementById("naturalTerritory").style.visibility = "visible";
+                            document.getElementById("wellOrchestrated").style.visibility = "hidden";
+                            document.getElementById("calculatedRisk").style.visibility = "hidden";
+                            document.getElementById("maintenance").style.visibility = "hidden";
+                            document.getElementById("addArmy").style.visibility = "hidden";
+                        } else {
+                            turnOffButtons();
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+}
+function territoryClicked() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "territoryClicked",
+            targetTerritory:targetTerritory
+        },
+        type: 'GET',
+        success: whatVisible
+
+    });
+}
+
 function showDetail(event)
 {
-showTerritoryId(event);
-showTerritoryInfo()
+    drawUnitTable();
+    showTerritoryId(event);
+    territoryClicked();
+    showTerritoryInfo();
 //עדכון הצבא ברשותו
 }
-
 function notClickedButtons() {
     (document.getElementById("maintenance")).style.border = "1px solid black";
     (document.getElementById("calculatedRisk")).style.border = "1px solid black";
@@ -268,35 +591,40 @@ function onMaintenanceClick(){
     notClickedButtons();
     buttonPressed=1;
     (document.getElementById("maintenance")).style.border = "3px solid blue";
+    document.getElementById("confirm").style.visibility="visible";
 }
 function onCalculatedRiskClick(){
     notClickedButtons();
     buttonPressed=2;
     (document.getElementById("calculatedRisk")).style.border = "3px solid blue";
+    document.getElementById("confirm").style.visibility="visible";
 }
 function onWellOrchestratedClick(){
     notClickedButtons();
     buttonPressed=3;
     (document.getElementById("wellOrchestrated")).style.border = "3px solid blue";
+    document.getElementById("confirm").style.visibility="visible";
 }
 function onNaturalTerritoryClick(){
     notClickedButtons();
      (document.getElementById("naturalTerritory")).style.border = "3px solid blue";
+    document.getElementById("confirm").style.visibility="visible";
      buttonPressed=4;
 }
 function onAddArmyClick(){
     notClickedButtons();
      buttonPressed=5;
     (document.getElementById("addArmy")).style.border = "3px solid blue";
+    document.getElementById("confirm").style.visibility="visible";
 }
 function onRetireClick(){
      notClickedButtons();
      buttonPressed=6;
     (document.getElementById("retire")).style.border = "3px solid blue";
+    document.getElementById("confirm").style.visibility="visible";
 }
 function onConfirmClick(){
     notClickedButtons();
-    var params = {};
     (document.getElementById("confirm")).style.border = "3px solid blue";
     if(buttonPressed === 1)
     {
@@ -305,7 +633,6 @@ function onConfirmClick(){
             url: 'SingleGame',
             data: {
                 action: "maintenance",
-                buttonPressed: buttonPressed,
                 targetTerritory:targetTerritory
             },
             type: 'GET',
@@ -314,69 +641,58 @@ function onConfirmClick(){
         });
     }
     if(buttonPressed === 2){
-        for ( var i = 0; i < dataTableSize; i++) {
-            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
-            params["action"]="calculatedRisk";
-            params["buttonPressed"]=buttonPressed;
-            params["targetTerritory"]=targetTerritory;
-        }
         $.ajax
         ({
             url: 'SingleGame',
-            data:params,
+            data: {
+                action: "dataTableDetails"
+            },
             type: 'GET',
-            success: resultCalculatedRisk
+            success: sendCalculatedRisk
 
         });
     }
     if(buttonPressed === 3)
     {
-        for ( var i = 0; i < dataTableSize; i++) {
-            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
-            params["action"]="wellOrchestrated";
-            params["buttonPressed"]=buttonPressed;
-            params["targetTerritory"]=targetTerritory;
-        }
         $.ajax
         ({
             url: 'SingleGame',
-            data:params,
+            data: {
+                action: "dataTableDetails"
+            },
             type: 'GET',
-            success: resultWellOrchestrated
+            success: sendWellOrchestrated
+
         });
+
     }
     if(buttonPressed === 4)
     {
-        for ( var i = 0; i < dataTableSize; i++) {
-            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
-            params["action"]="naturalTerritory";
-            params["buttonPressed"]=buttonPressed;
-            params["targetTerritory"]=targetTerritory;
-        }
         $.ajax
         ({
             url: 'SingleGame',
-            data:params,
+            data: {
+                action: "dataTableDetails"
+            },
             type: 'GET',
-            success: checkEnoughTouringsforNaturalTerritory
+            success: sendNaturalTerritory
+
         });
+
     }
     if(buttonPressed === 5)
     {
-
-        for ( var i = 0; i < dataTableSize; i++) {
-            params["PreattackerArmy"] ={i:[document.getElementById("unitType" + i),document.getElementById("unitDataInput" + i)]};
-            params["action"]="addArmy";
-            params["buttonPressed"]=buttonPressed;
-            params["targetTerritory"]=targetTerritory;
-        }
         $.ajax
         ({
             url: 'SingleGame',
-            data:params,
+            data: {
+                action: "dataTableDetails"
+            },
             type: 'GET',
-            success: checkEnoughTourings
+            success: sendAddArmy
+
         });
+
     }
     if(buttonPressed === 6)
     {
@@ -385,34 +701,215 @@ function onConfirmClick(){
             url: 'SingleGame',
             data: {
                 action: "retire",
-                buttonPressed: buttonPressed
+                player: userName
             },
-            type: 'GET',
-            success: deletePlayer
+            type: 'GET'
 
         });
     }
-    //updatePlaying Player(next turn)
-    drawBoard();
+    confirmPressed=true;
+    turnOffButtons();
+    document.getElementById("confirm").style.visibility="hidden";
+    document.getElementById("endTurn").style.visibility="visible";
+
+
+
 
 //apicall
 }
-function onEndTurnClick(){
-    //apicall
+function sendCalculatedRisk(unitTable) {
+    var params = {};
+    for ( var i = 0; i < unitTable.length; i++) {
+        params["PreattackerArmy"][unitTable[i].type] =parseInt(document.getElementById(unitTable[i].type).value);
+    }
+    params["action"]="calculatedRisk";
+    params["targetTerritory"]=targetTerritory;
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data:params,
+        type: 'POST',
+        success: resultCalculatedRisk
 
+    });
 }
 function resultCalculatedRisk() {
 
 }
-function checkEnoughTouringsforNaturalTerritory() {
+function sendAddArmy(unitTable) {
+    var params = {};
+    for ( var i = 0; i < unitTable.length; i++) {
+        params["PreattackerArmy"][unitTable[i].type] =parseInt(document.getElementById(unitTable[i].type).value);
+    }
+        params["action"]="addArmy";
+        params["targetTerritory"]=targetTerritory;
+
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data:params,
+        type: 'POST',
+        success: checkEnoughTouringsTobuildArmy
+    });
 
 }
-function checkEnoughTourings() {
+function checkEnoughTouringsTobuildArmy() {
+
+
+}
+function onEndTurnClick(){
+    document.getElementById("endTurn").style.visibility="hidden";
+    //apicall
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "endTurn"
+        },
+        type: 'GET',
+        success: endTurnUpdate
+
+    });
+
+}
+function endTurnUpdate(endTurnInfo) {
+   if(endTurnInfo.isCycleOver){
+
+
+       //made status update that change playerturn
+       //setDataRight
+       //checkTerritoryColors
+   }else{
+       //made status update that change playerturn
+       //setDataRight
+   }
+   if(endTurnInfo.gameOver){
+       if(thereIsWinner){
+           alert("The Winner Is: " +endTurnInfo.winnerPlayerName)
+           // winner_war.setText("The Winner of the game: " + getWinnerPlayer().getPlayer_name()); //endTurnInfo.winnerPlayerName
+           // winner();
+       }else{
+           //set Tie
+           alert("There are no winners: TIE!")
+
+       }
+       //GameOver
+       document.getElementById("retire").style.visibility="hidden";
+       document.getElementById("endTurn").style.visibility="hidden";
+       turnOffButtons();
+       showTerritoryInfoFlag=false;
+       engineStart=false;
+       gameCanStart=false;
+       checkIfItIsThisUserTurn=false;
+       once=true;
+       initHappend=true;
+       clearGame();
+
+
+       //send an ending message that redircet the players out the game and clean playerslist and board
+   }
+
+}
+function clearGame() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "clearGame"
+        },
+        type: 'GET',
+        success:  window.location = "../Lobby/lobby.html"
+
+    });
+
+}
+function sendNaturalTerritory(unitTable) {
+
+    var params = {};
+
+    for ( var i = 0; i < unitTable.length; i++) {
+
+        params[unitTable[i].type] =document.getElementById(unitTable[i].type).value;
+    }
+       params["action"]="naturalTerritory";
+       params["targetTerritory"]=targetTerritory;
+    // var clone = document.createElement('unitInput');
+    // clone.type="text";
+    // clone = elem.cloneNode(true);
+    // for ( var i = 0; i < unitTable.length; i++) {
+    //     clone.setAttribute(unitTable[i].type, document.getElementById(unitTable[i].type).value);
+    // }
+    //
+    //
+    // $('#myform').append(clone);
+    // var formData = new FormData($('#myform')[0]);
+    $.ajax
+    ({
+            url: 'SingleGame',
+            data: params
+            // {
+            // action:"naturalTerritory",
+//         data
+// :
+//     params,
+            // targetTerritory:targetTerritory
+// }
+            ,
+            type: 'POST',
+            success: ifNaturalTerritoryIsConquered
+        }
+    );
+
+}
+function ifNaturalTerritoryIsConquered(haveEnoughTourings) {
+
+if(haveEnoughTourings){
+    alert("The Territory is now yours");
+}
+else{
+    alert("You dont have enough Tourings");
+}
+
+    //document.getElementById("endTurn").style.visibility="visible";
+
+
+
+}
+function checkEnoughTourings(hasEnoughMoney) {
+    if(hasEnoughMoney)
+    {
+        //drawdatatable
+        showTerritoryInfo();
+    }
+    else
+    {
+        window.alert("You Dont have enough Money \n Skip Turn");
+        //alert("You Dont have enough Money \n Skip Turn");
+    }
+
+}
+function sendWellOrchestrated(unitTable) {
+    var params = {};
+    for ( var i = 0; i < unitTable.length; i++) {
+        params["PreattackerArmy"][unitTable[i].type] =parseInt(document.getElementById(unitTable[i].type).value);
+    }
+        params["action"]="wellOrchestrated";
+        params["targetTerritory"]=targetTerritory;
+
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data:params,
+        type: 'POST',
+        success: resultWellOrchestrated
+    });
 
 }
 function resultWellOrchestrated() {
 
 }
 function deletePlayer() {
+
+
 
 }
