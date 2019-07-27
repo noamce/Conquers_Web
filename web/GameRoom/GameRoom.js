@@ -183,8 +183,6 @@ function processInfo(data){
     findPlayerColor(data.color);
     element = document.getElementById("TurringsInfo");
     element.innerHTML="Turrings: "+ data.funds;
-    element = document.getElementById("numberOfTerritories");
-    element.innerHTML="# of Territories : "+ data.numberOfTerritories;
 }
 
 function findPlayerColor(color){

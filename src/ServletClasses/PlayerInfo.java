@@ -36,7 +36,6 @@ public class PlayerInfo extends HttpServlet {
                 currentPlayer.getPlayer_name(),
                 currentPlayer.getColor(),
                 currentPlayer.getFunds(),
-                currentPlayer.getTerritoriesID().size(),
                 engine.getGameManager().roundNumber,
                 engine.getDescriptor().getTotalCycles())
         ));
