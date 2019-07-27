@@ -7,16 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11bff4d9-e3e0-4bc0-8a41-45a992a449da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/OneBattleData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/GameRoom/GameRoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObjects/Army.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/Army.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServletClasses/BoardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServletClasses/BoardServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/Lobby/Rooms.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Conquers_Web_war_exploded/Lobby/Rooms.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/BattleInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BattleInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/GameRoom/GameRoom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Lobby/Rooms.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/Lobby/Rooms.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,139 +20,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <splitter split-orientation="horizontal" split-proportion="0.5">
-            <split-first>
-              <leaf>
-                <file pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/src/ServletClasses/PlayerInfo.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="364">
-                        <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-                        <folding>
-                          <element signature="imports" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/src/utils/PlayerModel.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="289">
-                        <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/src/GameObjects/Player.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="17">
-                        <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-                        <folding>
-                          <element signature="imports" expanded="true" />
-                          <element signature="e#1090#1091#0" expanded="true" />
-                          <element signature="e#1123#1124#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/src/GameObjects/TerritoryDataTable.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="306">
-                        <caret line="18" column="28" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="28" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/src/utils/endTurnInfo.java">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="204">
-                        <caret line="12" selection-start-line="12" selection-end-line="12" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="282">
-                        <caret line="930" column="8" selection-start-line="930" selection-start-column="8" selection-end-line="930" selection-end-column="8" />
-                        <folding>
-                          <element signature="e#624#649#0" />
-                          <element signature="e#710#732#0" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf>
-                <file pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="-5073">
-                        <caret line="479" column="111" selection-start-line="454" selection-start-column="4" selection-end-line="479" selection-end-column="111" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="408">
-                        <caret line="115" column="34" selection-start-line="115" selection-start-column="34" selection-end-line="115" selection-end-column="34" />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="109" column="41" lean-forward="true" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ServletClasses/AllPlayersHereServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="40" column="42" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-              <folding>
-                <element signature="method#doGet#0;class#AllPlayersHereServlet#0" />
-                <element signature="docComment;method#doPost#0;class#AllPlayersHereServlet#0" />
-                <element signature="docComment;method#getServletInfo#0;class#AllPlayersHereServlet#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServletClasses/DataTableServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
+            <state relative-caret-position="272">
+              <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
               <folding>
+                <element signature="e#1498#1506#0" expanded="true" />
                 <element signature="docComment;method#doPost#0;class#DataTableServlet#0" />
                 <element signature="docComment;method#getServletInfo#0;class#DataTableServlet#0" />
               </folding>
@@ -169,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/src/ServletClasses/TerritoryHandleServlet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="267">
-              <caret line="97" column="52" lean-forward="true" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
+              <caret line="97" column="52" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
               <folding>
                 <element signature="method#doGet#0;class#TerritoryHandleServlet#0" />
                 <element signature="docComment;method#doPost#0;class#TerritoryHandleServlet#0" />
@@ -179,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
-              <caret line="288" column="42" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
+            <state relative-caret-position="92">
+              <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
               <folding>
                 <element signature="e#7702#7710#0" expanded="true" />
                 <element signature="e#14482#14490#0" expanded="true" />
@@ -192,13 +63,13 @@
                 <element signature="e#23253#23303#0" />
                 <element signature="e#23666#23769#0" />
                 <element signature="e#24821#24940#0" expanded="true" />
-                <element signature="e#23054#23055#0" expanded="true" />
+                <element signature="e#22143#22144#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/BattleInfo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -211,34 +82,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Lobby/chatRoom/chatroom.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Lobby/Rooms.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="704">
+              <caret line="131" column="1" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="438">
+              <caret line="574" column="1" selection-start-line="574" selection-end-line="575" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/OneBattleData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" column="22" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ServletClasses/BoardServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-              <folding>
-                <element signature="method#doGet#0;class#BoardServlet#0" />
-                <element signature="docComment;method#doPost#0;class#BoardServlet#0" />
-                <element signature="docComment;method#getServletInfo#0;class#BoardServlet#0" />
-                <element signature="e#3566#3567#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/BoardDetails.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="74" selection-start-line="7" selection-start-column="74" selection-end-line="7" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -263,15 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DataTableServlet</find>
-      <find>startOfRoundUpdates</find>
-      <find>/DataTable</find>
-      <find>dataTableDetails</find>
-      <find>allPlayersHere</find>
-      <find>territoryClicked</find>
-      <find>territoryDataTable</find>
-      <find>color</find>
-      <find>style</find>
       <find>showD</find>
       <find>init</find>
       <find>getGameDetails</find>
@@ -289,10 +150,19 @@
       <find>buttonPressed</find>
       <find>cons</find>
       <find>naturalTerritory</find>
-      <find>sendCalculatedRisk</find>
       <find>draw</find>
       <find>boardBody</find>
       <find>List&lt;</find>
+      <find>hidden</find>
+      <find>winner(</find>
+      <find>getTerritories</find>
+      <find>sendCalculatedRisk</find>
+      <find>winner</find>
+      <find>window.location</find>
+      <find>cY</find>
+      <find>engine</find>
+      <find>engin</find>
+      <find>endI</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -326,9 +196,10 @@
         <option value="$PROJECT_DIR$/src/GameEngine/GameManager.java" />
         <option value="$PROJECT_DIR$/src/GameObjects/Army.java" />
         <option value="$PROJECT_DIR$/src/utils/OneBattleData.java" />
-        <option value="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" />
         <option value="$PROJECT_DIR$/src/utils/BattleInfo.java" />
         <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.html" />
+        <option value="$PROJECT_DIR$/web/Lobby/Rooms.css" />
+        <option value="$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java" />
         <option value="$PROJECT_DIR$/web/GameRoom/GameRoom.js" />
       </list>
     </option>
@@ -408,6 +279,13 @@
               <item name="Conquers_Web" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conquers_Web" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="Lobby" type="462c0819:PsiDirectoryNode" />
+              <item name="chatRoom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Conquers_Web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Conquers_Web" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -430,9 +308,12 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564250232067" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564253388967" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.25287357" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -549,7 +430,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132375000" />
+    <option name="totallyTimeSpent" value="135182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -564,17 +445,17 @@
     <frame x="-1688" y="3" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.72837025" visible="true" weight="0.1314181" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.72837025" visible="true" weight="0.23471883" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" sideWeight="0.27162978" side_tool="true" visible="true" weight="0.1314181" />
+      <window_info id="Web" order="7" sideWeight="0.27162978" side_tool="true" visible="true" weight="0.23471883" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3281075" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75789475" visible="true" weight="0.44344905" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.75789475" visible="true" weight="0.44344905" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.805668" weight="0.38969764" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -607,13 +488,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java</url>
-          <line>253</line>
+          <line>223</line>
           <properties />
           <option name="timeStamp" value="126" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/GameRoom/GameRoom.js</url>
-          <line>815</line>
+          <line>836</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="127" />
         </line-breakpoint>
@@ -686,8 +567,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9758">
-          <caret line="574" column="11" selection-start-line="574" selection-end-line="575" />
+        <state relative-caret-position="438">
+          <caret line="574" column="1" selection-start-line="574" selection-end-line="575" />
         </state>
       </provider>
     </entry>
@@ -850,8 +731,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/PlayerModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="255">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -980,16 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServletClasses/PlayerInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ServletClasses/AllPlayersHereServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -1036,68 +907,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServletClasses/TerritoryHandleServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="97" column="52" lean-forward="true" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
-          <folding>
-            <element signature="method#doGet#0;class#TerritoryHandleServlet#0" />
-            <element signature="docComment;method#doPost#0;class#TerritoryHandleServlet#0" />
-            <element signature="docComment;method#getServletInfo#0;class#TerritoryHandleServlet#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="288" column="42" selection-start-line="288" selection-start-column="42" selection-end-line="288" selection-end-column="42" />
-          <folding>
-            <element signature="e#7702#7710#0" expanded="true" />
-            <element signature="e#14482#14490#0" expanded="true" />
-            <element signature="e#16302#16310#0" expanded="true" />
-            <element signature="e#17527#17535#0" expanded="true" />
-            <element signature="e#23253#23303#0" />
-            <element signature="e#23666#23769#0" />
-            <element signature="e#24821#24940#0" expanded="true" />
-            <element signature="e#23054#23055#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServletClasses/DataTableServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-          <folding>
-            <element signature="docComment;method#doPost#0;class#DataTableServlet#0" />
-            <element signature="docComment;method#getServletInfo#0;class#DataTableServlet#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/OneBattleData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="22" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="109" column="41" lean-forward="true" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="930" column="8" selection-start-line="930" selection-start-column="8" selection-end-line="930" selection-end-column="8" />
-          <folding>
-            <element signature="e#624#649#0" />
-            <element signature="e#710#732#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1107,6 +920,81 @@
           <caret line="12" column="17" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Lobby/chatRoom/chatroom.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Lobby/Rooms.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="131" column="1" selection-start-line="131" selection-start-column="1" selection-end-line="131" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServletClasses/PlayerInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServletClasses/DataTableServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <element signature="e#1498#1506#0" expanded="true" />
+            <element signature="docComment;method#doPost#0;class#DataTableServlet#0" />
+            <element signature="docComment;method#getServletInfo#0;class#DataTableServlet#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServletClasses/TerritoryHandleServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="97" column="52" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
+          <folding>
+            <element signature="method#doGet#0;class#TerritoryHandleServlet#0" />
+            <element signature="docComment;method#doPost#0;class#TerritoryHandleServlet#0" />
+            <element signature="docComment;method#getServletInfo#0;class#TerritoryHandleServlet#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/GameRoom/GameRoom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5073">
+          <caret line="500" column="111" selection-start-line="475" selection-start-column="4" selection-end-line="500" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServletClasses/SingleGameServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="102" column="36" lean-forward="true" selection-start-line="102" selection-start-column="36" selection-end-line="102" selection-end-column="36" />
+          <folding>
+            <element signature="e#7702#7710#0" expanded="true" />
+            <element signature="e#14482#14490#0" expanded="true" />
+            <element signature="e#16302#16310#0" expanded="true" />
+            <element signature="e#17527#17535#0" expanded="true" />
+            <element signature="e#23253#23303#0" />
+            <element signature="e#23666#23769#0" />
+            <element signature="e#24821#24940#0" expanded="true" />
+            <element signature="e#22143#22144#0" expanded="true" />
           </folding>
         </state>
       </provider>

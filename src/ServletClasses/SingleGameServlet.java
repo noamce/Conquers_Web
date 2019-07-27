@@ -30,48 +30,6 @@ public class SingleGameServlet extends HttpServlet {
     {
 
 
-//        switch (req.getParameter("action")){
-//            case "startGame":
-//                startGame(req,resp);
-//                break;
-//            case "LeaveGame":
-//                leaveGame(req,resp);
-//                break;
-//            case "dataTableDetails":
-//                sendTableData(req,resp);
-//                break;
-//            case "getGameDetails":
-//                returnGameDetails(req,resp);
-//                break;
-//            case "maintenance":
-//                maintenanceData(req,resp);
-//                break;
-//            case "calculatedRisk":
-//                calculatedRiskInfo(req,resp);
-//                break;
-//            case "wellOrchestrated":
-//                wellOrchestratedInfo(req,resp);
-//                break;
-//            case "naturalTerritory":
-//                naturalTerritoryInfo(req,resp);
-//                break;
-//            case "addArmy":
-//                maintenanceData(req,resp);
-//                break;
-//            case "retire":
-//                retireAndGoBack(req,resp);
-//                break;
-//            case "endTurn":
-//                endTurnDetails(req,resp);
-//                break;
-//            case "territoryClicked":
-//                getTerritoryForButtonsInfo(req,resp);
-//                break;
-//            case "territoryDataTable":
-//                getTerritoryDetailsForDataTable(req,resp);
-//                break;
-//
-//        }
         String action;
          action=req.getParameter("action");
 
@@ -83,14 +41,9 @@ public class SingleGameServlet extends HttpServlet {
         {
             initGame(req,resp);
         }
-//        else if (action.equals("isItThisPlayer"))
-//        {
-//            isItThisPlayer(req,resp);
-//        }
-//        else if (action.equals("allPlayersHere"))
-//        {
-//            allPlayersHere(req,resp);
-//        }
+        else if(action.equals("endGame")){
+            endTheGame(req,resp);
+        }
         else if (action.equals("startGame"))
         {
             startGame(req,resp);
@@ -141,6 +94,23 @@ public class SingleGameServlet extends HttpServlet {
 
 
 
+    }
+
+    private void endTheGame(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json");
+        GameEngine engine;
+        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+        PrintWriter out = resp.getWriter();
+        Room currRoom = utils.getCurrentRoom(req, rooms);
+        engine = currRoom.getGameEngine();
+
+        Gson gson = new Gson();
+        String winner;
+       if(engine.getGameManager().getWinnerPlayer() != null)
+              winner=engine.getGameManager().getWinnerPlayer().getPlayer_name();
+        else
+            winner="TIE";
+    out.println(gson.toJson(winner));
     }
 
     private void clearTheGame(HttpServletRequest req, HttpServletResponse resp) throws IOException {

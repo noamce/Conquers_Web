@@ -169,20 +169,43 @@ function getCurrentPlayerInfo() {
     }
 }
 
+function endGame() {
+    $.ajax
+    ({
+        url: 'SingleGame',
+        data: {
+            action: "endGame"
+        },
+        type: 'GET',
+        success: endIt
 
+    });
+
+}
+function endIt(WINNER) {
+    alert("Who is the winner: "+WINNER.toString());
+    clearGame();
+    onLeaveGameClick();
+}
 function processInfo(data){
     //console.log(data);
-    currentPlayerPlaying=data.name.toString();
-    var element = document.getElementById("nameOfcurrentPlayer");
-    element.innerHTML="Player Turn:"+data.name.toString();
-    element = document.getElementById("roundNumberinfo");
-    element.innerHTML=data.roundNumber;
     roundNumber=data.roundNumber;
-    element = document.getElementById("totalCycleinfo");
-    element.innerHTML=" / " +data.totalCycles.toString();
-    findPlayerColor(data.color);
-    element = document.getElementById("TurringsInfo");
-    element.innerHTML="Turrings: "+ data.funds;
+    if((roundNumber-1) === data.totalCycles){
+        endGame();
+    }
+    else {
+        currentPlayerPlaying = data.name.toString();
+        var element = document.getElementById("nameOfcurrentPlayer");
+        element.innerHTML = "Player Turn:" + data.name.toString();
+        element = document.getElementById("roundNumberinfo");
+        element.innerHTML = data.roundNumber;
+
+        element = document.getElementById("totalCycleinfo");
+        element.innerHTML = " / " + data.totalCycles.toString();
+        findPlayerColor(data.color);
+        element = document.getElementById("TurringsInfo");
+        element.innerHTML = "Turrings: " + data.funds;
+    }
 }
 
 function findPlayerColor(color){
@@ -922,52 +945,7 @@ function sendWellOrchestrated(unitTable) {
 function resultWellOrchestrated(warZone) {
 
 
-    $("#AttackTable").empty();
-    $('#Winner').empty();
-    if(warZone === false){
 
-
-    }
-    else {
-        ArmyAttckTableSize = warZone.PreattackerArmy.length;
-        //console.log(territoryDataTableInfo);
-        for (var i = 0; i < territoryDataTableSize; i++) {
-            var tr = document.createElement("tr");
-            var td = document.createElement("td");
-            td.appendChild(document.createTextNode(warZone.PreattackerArmy.unitType));
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.appendChild(document.createTextNode(warZone.PreattackerArmy.preAmount));
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.appendChild(document.createTextNode(warZone.PreattackerArmy.fp));
-            tr.appendChild(td);
-
-
-
-            document.getElementById("AttackTable").appendChild(tr);
-        }
-        ArmyAttckTableSize = warZone.PredefenceArmy.length;
-        //console.log(territoryDataTableInfo);
-        for (var i = 0; i < territoryDataTableSize; i++) {
-            var tr = document.createElement("tr");
-            var td = document.createElement("td");
-            td.appendChild(document.createTextNode(warZone.PredefenceArmy.unitType));
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.appendChild(document.createTextNode(warZone.PredefenceArmy.preAmount));
-            tr.appendChild(td);
-            td = document.createElement("td");
-            td.appendChild(document.createTextNode(warZone.PredefenceArmy.fp));
-            tr.appendChild(td);
-
-
-
-            document.getElementById("AttackTable").appendChild(tr);
-        }
-        $('.Winner').text("The Winner is: "+warZone.winner);
-
-    }
 }
 function deletePlayer() {
 
