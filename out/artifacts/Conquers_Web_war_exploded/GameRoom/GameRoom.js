@@ -747,10 +747,12 @@ function onConfirmClick(){
 }
 function sendCalculatedRisk(unitTable) {
     var params = {};
+
     for ( var i = 0; i < unitTable.length; i++) {
-        params["PreattackerArmy"][unitTable[i].type] =parseInt(document.getElementById(unitTable[i].type).value);
+
+        params[unitTable[i].type] =document.getElementById(unitTable[i].type).value;
     }
-    params["action"]="calculatedRisk";
+    params["action"]="naturalTerritory";
     params["targetTerritory"]=targetTerritory;
     $.ajax
     ({
@@ -766,12 +768,13 @@ function resultCalculatedRisk(data) {
 }
 function sendAddArmy(unitTable) {
     var params = {};
-    for ( var i = 0; i < unitTable.length; i++) {
-        params["PreattackerArmy"][unitTable[i].type] =parseInt(document.getElementById(unitTable[i].type).value);
-    }
-        params["action"]="addArmy";
-        params["targetTerritory"]=targetTerritory;
 
+    for ( var i = 0; i < unitTable.length; i++) {
+
+        params[unitTable[i].type] =document.getElementById(unitTable[i].type).value;
+    }
+    params["action"]="naturalTerritory";
+    params["targetTerritory"]=targetTerritory;
     $.ajax
     ({
         url: 'SingleGame',
@@ -861,28 +864,11 @@ function sendNaturalTerritory(unitTable) {
     }
        params["action"]="naturalTerritory";
        params["targetTerritory"]=targetTerritory;
-    // var clone = document.createElement('unitInput');
-    // clone.type="text";
-    // clone = elem.cloneNode(true);
-    // for ( var i = 0; i < unitTable.length; i++) {
-    //     clone.setAttribute(unitTable[i].type, document.getElementById(unitTable[i].type).value);
-    // }
-    //
-    //
-    // $('#myform').append(clone);
-    // var formData = new FormData($('#myform')[0]);
+
     $.ajax
     ({
             url: 'SingleGame',
-            data: params
-            // {
-            // action:"naturalTerritory",
-//         data
-// :
-//     params,
-            // targetTerritory:targetTerritory
-// }
-            ,
+            data: params,
             type: 'POST',
             success: ifNaturalTerritoryIsConquered
         }
@@ -918,11 +904,13 @@ function checkEnoughTourings(hasEnoughMoney) {
 }
 function sendWellOrchestrated(unitTable) {
     var params = {};
+
     for ( var i = 0; i < unitTable.length; i++) {
-        params["PreattackerArmy"][unitTable[i].type] =parseInt(document.getElementById(unitTable[i].type).value);
+
+        params[unitTable[i].type] =document.getElementById(unitTable[i].type).value;
     }
-        params["action"]="wellOrchestrated";
-        params["targetTerritory"]=targetTerritory;
+    params["action"]="naturalTerritory";
+    params["targetTerritory"]=targetTerritory;
 
     $.ajax
     ({
@@ -933,8 +921,55 @@ function sendWellOrchestrated(unitTable) {
     });
 
 }
-function resultWellOrchestrated() {
+function resultWellOrchestrated(warZone) {
 
+
+    $("#AttackTable").empty();
+    $('#Winner').empty();
+    if(warZone === false){
+
+
+    }
+    else {
+        ArmyAttckTableSize = warZone.PreattackerArmy.length;
+        //console.log(territoryDataTableInfo);
+        for (var i = 0; i < territoryDataTableSize; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            td.appendChild(document.createTextNode(warZone.PreattackerArmy.unitType));
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.appendChild(document.createTextNode(warZone.PreattackerArmy.preAmount));
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.appendChild(document.createTextNode(warZone.PreattackerArmy.fp));
+            tr.appendChild(td);
+
+
+
+            document.getElementById("AttackTable").appendChild(tr);
+        }
+        ArmyAttckTableSize = warZone.PredefenceArmy.length;
+        //console.log(territoryDataTableInfo);
+        for (var i = 0; i < territoryDataTableSize; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            td.appendChild(document.createTextNode(warZone.PredefenceArmy.unitType));
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.appendChild(document.createTextNode(warZone.PredefenceArmy.preAmount));
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.appendChild(document.createTextNode(warZone.PredefenceArmy.fp));
+            tr.appendChild(td);
+
+
+
+            document.getElementById("AttackTable").appendChild(tr);
+        }
+        $('.Winner').text("The Winner is: "+warZone.winner);
+
+    }
 }
 function deletePlayer() {
 

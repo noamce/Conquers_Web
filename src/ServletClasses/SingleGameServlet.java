@@ -151,31 +151,7 @@ public class SingleGameServlet extends HttpServlet {
         engine = currRoom.getGameEngine();
     }
 
-//    private void isItThisPlayer(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        String whoIsThis="wait";
-//        PrintWriter out = resp.getWriter();
-//        resp.setContentType("application/json");
-//        GameEngine engine;
-//        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
-//        Gson gson = new Gson();
-//        Room currRoom = utils.getCurrentRoom(req, rooms);
-//        engine = currRoom.getGameEngine();
-//        if(currRoom.isGameStarted())
-//             whoIsThis = engine.getGameManager().getCurrentPlayerTurn().getPlayer_name();
-//        out.println(gson.toJson(whoIsThis));
-//    }
-
-//    private void allPlayersHere(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        resp.setContentType("application/json");
-//        GameEngine engine;
-//        Gson gson = new Gson();
-//        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
-//        PrintWriter out = resp.getWriter();
-//        Room currRoom = utils.getCurrentRoom(req, rooms);
-//        boolean allPlayershere = currRoom.isGameStarted();
-//        out.println(gson.toJson(allPlayershere));
-//    }
-
+//
 
     private void naturalTerritoryInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
@@ -197,7 +173,6 @@ public class SingleGameServlet extends HttpServlet {
                     haveEnoughTourings=true;
                 }
 
-               // skip_turn.setDisable(false);
             }
         }
 
@@ -266,10 +241,10 @@ public class SingleGameServlet extends HttpServlet {
             }
             //winner_war.setText("The Battle Winner: "+engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().getPlayer_name());
             String winner=engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().getPlayer_name();
-            out.println(gson.toJson(new BattleInfo(attackerArmy,PredefenceArmy,winner,true)));
+            out.println(gson.toJson(new BattleInfo(engine,attackerArmy,PredefenceArmy,winner,true)));
 
         }else{
-            out.println(gson.toJson(new BattleInfo(null,null,null,false)));
+            out.println(gson.toJson(false));
         }
         if (battle.isWinnerArmyNotStrongEnoughToHoldTerritory())
             engine.getDescriptor().getTerritoryMap().get(territoryId).xChangeFundsForUnitsAndHold();
@@ -308,10 +283,10 @@ public class SingleGameServlet extends HttpServlet {
             }
            // winner_war.setText("The Battle Winner: "+engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().getPlayer_name());
             String winner=engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().getPlayer_name();
-            out.println(gson.toJson(new BattleInfo(PreattackerArmy,PredefenceArmy,winner,true)));
+            out.println(gson.toJson(new BattleInfo(engine,PreattackerArmy,PredefenceArmy,winner,true)));
         }
         else{
-            out.println(gson.toJson(new BattleInfo(null,null,null,false)));
+            out.println(gson.toJson(false));
         }
         if (battle.isWinnerArmyNotStrongEnoughToHoldTerritory()) {
             engine.getDescriptor().getTerritoryMap().get(territoryId).xChangeFundsForUnitsAndHold();
@@ -321,21 +296,7 @@ public class SingleGameServlet extends HttpServlet {
     }
 
     private int pricetobuy(HttpServletRequest req, HttpServletResponse resp,GameEngine engine) {
-        // int territoryId=Integer.parseInt(req.getParameter("targetTerritory"));
-//        Map<String, String[]> map = req.getParameterMap();
-//        int sumOfprice = 0;
-//        String[] list = map.get("PreattackerArmy");
-//        for (String paramName : list) {
-//            String[] paramValues = map.get(paramName);
-//            //Get Values of Param Name
-//            for (String valueOfParam : paramValues) {
-//                //Output the Values
-//                int Amount = Integer.parseInt(valueOfParam);
-//                int price = engine.getDescriptor().getUnitMap().get(paramName).getPurchase();
-//                sumOfprice = sumOfprice + Amount * price;
-//
-//            }
-//        }
+
         List<String> listOfUnits = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
         int sumOfprice = 0;
         for (int i = 0; i < engine.getDescriptor().getUnitMap().size(); i++) {
@@ -353,25 +314,7 @@ public class SingleGameServlet extends HttpServlet {
 
     }
     private Army buildArmyFromData(HttpServletRequest req, HttpServletResponse resp,GameEngine engine) {
-//        Map<String, String[]> map = req.getParameterMap();
 
-
-//        String[] list = map.get("PreattackerArmy");
-//        for(String paramName:list) {
-//            String[] paramValues = map.get(paramName);
-//            //Get Values of Param Name
-//            for (String amount : paramValues) {
-//                //Output the Values
-//                for (int j = 0; j <Integer.parseInt(amount); j++) {
-//                    int rank = engine.getDescriptor().getUnitMap().get(paramName).getRank();
-//                    int purchase = engine.getDescriptor().getUnitMap().get(paramName).getPurchase();
-//                    int Maxfp = engine.getDescriptor().getUnitMap().get(paramName).getMaxFirePower();
-//                    int competenceReduction = engine.getDescriptor().getUnitMap().get(paramName).getCompetenceReduction();
-//                    Unit unit = new Unit(paramName, rank, purchase, Maxfp, competenceReduction);
-//                    army.addUnit(unit);
-//                }
-//            }
-//        }
         Army army = new Army();
         List<String> listOfUnits = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
         for (int i = 0; i < engine.getDescriptor().getUnitMap().size(); i++) {
@@ -434,7 +377,9 @@ public class SingleGameServlet extends HttpServlet {
 
         if (isCycleOver) {
             engine.getGameManager().startOfRoundUpdates();
-            engine.getGameManager().endOfRoundUpdates();
+            engine.getGameManager().roundNumber++;
+            //engine.getGameManager().endOfRoundUpdates();
+
             engine.getGameManager().nextPlayerInTurn();
         } else {
             engine.gameManager.nextPlayerInTurn();
@@ -480,74 +425,7 @@ public class SingleGameServlet extends HttpServlet {
         out.println(gson.toJson(maintenaceSucseed));
     }
 
-//    private void getTerritoryDetailsForDataTable(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
-//        GameEngine engine;
-//        resp.setContentType("application/json");
-//        PrintWriter out = resp.getWriter();
-//        Room currRoom = utils.getCurrentRoom(req, rooms);
-//        Gson gson = new Gson();
-//        engine = currRoom.getGameEngine();
-//        int maintenance,amount,rank,maintenanceCost,totalFirePower,fp;
-//        String unitType="Not Available";
-//        maintenance=amount=rank=maintenanceCost=totalFirePower=fp=0;
-//        List<GameObjects.TerritoryDataTable> TerritoryDataTableList = new ArrayList<>();
-//        if(Boolean.parseBoolean(req.getParameter("showFlag"))) {
-//            List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
-//            int territoryID=Integer.parseInt(req.getParameter("territoryId"));
-//            totalFirePower=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().getTotalPower();
-//            maintenanceCost=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().calculateRehabilitationPrice();
-//            for (int i = 0; i < unitMapp.size(); i++) {
-//                unitType = unitMapp.get(i);
-//                rank = engine.getDescriptor().getUnitMap().get(unitType).getRank();
-//                maintenance=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().calculateRehabilitationPriceperUnit(unitType);
-//                fp=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().getTotalPowerPerUnit(unitType);
-//                amount=engine.getDescriptor().getTerritoryMap().get(territoryID).getConquerArmyForce().howMachFromThisUnitType(unitType);
-//                TerritoryDataTableList.add(new TerritoryDataTable(unitType, maintenance, fp, amount, rank, maintenanceCost, totalFirePower));
-//            }
-//        }
-//        else{
-//            TerritoryDataTableList.add(new TerritoryDataTable(unitType, maintenance, fp, amount, rank, maintenanceCost, totalFirePower));
-//        }
-//
-//
-//        out.println(gson.toJson(TerritoryDataTableList));
-//    }
 
-//    private void getTerritoryForButtonsInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        GameEngine engine;
-//        resp.setContentType("application/json");
-//        PrintWriter out = resp.getWriter();
-//
-//        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
-//
-//        Room currRoom = utils.getCurrentRoom(req, rooms);
-//        Gson gson = new Gson();
-//        engine = currRoom.getGameEngine();
-//
-//
-//        int territoryId=Integer.parseInt(req.getParameter("targetTerritory"));
-//        Territory targetTerritory = engine.getDescriptor().getTerritoryMap().get(territoryId);
-//        engine.gameManager.setSelectedTerritoryForTurn(targetTerritory);
-//        boolean territoryConquered=engine.gameManager.isConquered();
-//        boolean gameOver=engine.getGameManager().isGameOver();
-//        boolean onlyOnePlayer= (engine.getDescriptor().getPlayersList().size()==1);
-//        boolean isTerritoryBelongsCurrentPlayer=engine.gameManager.isTerritoryBelongsCurrentPlayer();
-//        boolean isTargetTerritoryValid=engine.gameManager.isTargetTerritoryValid();
-//        boolean playerDontHaveTerritories=(engine.getGameManager().getCurrentPlayerTurn().getTerritoriesID().size() == 0);
-//
-//        out.println(gson.toJson(new TerritoryButtonsInfo(
-//                                    territoryConquered,
-//                                    gameOver,
-//                                    onlyOnePlayer,
-//                                    isTerritoryBelongsCurrentPlayer,
-//                                    isTargetTerritoryValid,
-//                                    playerDontHaveTerritories,
-//                                    (engine.gameManager.roundNumber == 1))
-//        ));
-//
-//
-//    }
 
     private void initGame(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Gson gson = new Gson();

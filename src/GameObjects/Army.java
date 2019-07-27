@@ -9,6 +9,7 @@ public class Army implements Serializable {
     private int potentialPower;
     private int totalPower;
 
+
     public Army(Army army) {
         this.Units = new ArrayList<>();
         army.getUnits().forEach(unit -> Units.add(new Unit(unit)));
