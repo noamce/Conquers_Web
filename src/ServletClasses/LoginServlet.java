@@ -77,6 +77,8 @@ private int i=2;
 
     private void addPlayer(HttpServletRequest req,HttpSession httpSession,HttpServletResponse resp) throws IOException {
         players.addUser(req.getParameter("username"));
+        UserManager userManager = ServletUtils.getUserManager(getServletContext());
+        userManager.addUser(req.getParameter("username"));
         httpSession.setAttribute("ThisSessionPlayer",req.getParameter("username"));
         getServletContext().setAttribute("players",players);
 
