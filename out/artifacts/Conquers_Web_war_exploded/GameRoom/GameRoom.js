@@ -1,7 +1,6 @@
 var cols;
 var rows;
 var userName;
-var territoriesMap;
 var targetTerritory;
 var engineStart=false;
 var buttonPressed;
@@ -234,16 +233,16 @@ function upDateMapandInfo() {
             action: "getGameDetails"
         },
         type: 'GET',
-        success: updateMapAndINFO
+        success: drawBoard
 
     });
 
 }
-function updateMapAndINFO(data){
-
-        territoriesMap=data.gameEngine.descriptor.territoryMap;
-        drawBoard();
-    }
+// function updateMapAndINFO(data){
+//
+//         territoriesMap=data.gameEngine.descriptor.territoryMap;
+//         drawBoard();
+//     }
 function startGame() {
     if (engineStart===false)
         {
@@ -357,9 +356,9 @@ function drawDataTable(dataTable) {
 
 }
 
-function drawBoard()
+function drawBoard(data)
 {
-        // get the reference for the body
+         var territoriesMap=data.gameEngine.descriptor.territoryMap;// get the reference for the body
         var div1 = document.getElementById('boardBody');
         $("#boardBody").empty();
         var i=1;
