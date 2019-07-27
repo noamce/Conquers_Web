@@ -494,17 +494,9 @@ public class SingleGameServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         String userName = req.getSession(false).getAttribute("username").toString();
-        int cols , rows;
-        rooms = (ArrayList<Room>) getServletContext().getAttribute("rooms");
-        Room currRoom = null;
-        currRoom = utils.getCurrentRoom(req, rooms);
-        GameEngine engine;
-        if (currRoom != null) {
-            cols = currRoom.getGameEngine().getDescriptor().getColumns();
-            rows = currRoom.getGameEngine().getDescriptor().getRows();
-            engine=currRoom.getGameEngine();
-            out.println(gson.toJson(new GameDetails(cols, rows , userName,engine,currRoom.isGameStarted())));
-        }
+        out.println(gson.toJson(userName));
+
+
     }
 //    private void returnGameDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 //        resp.setContentType("application/json");

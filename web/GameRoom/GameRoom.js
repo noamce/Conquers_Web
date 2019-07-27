@@ -1,5 +1,4 @@
-var cols;
-var rows;
+
 var userName;
 var targetTerritory;
 var engineStart=false;
@@ -135,15 +134,11 @@ function setGameForFirstTime() {
     });
 
 }
-function initSet(data){
+function initSet(nameOfTheSessionPlayer){
 
-    userName = data.userName; //this is the name of the player who is the page open(of the session)
+    userName = nameOfTheSessionPlayer.toString(); //this is the name of the player who is the page open(of the session)
     $('.userNameSpan').text("hi "+userName);
-    $('.gameStatus').text("the game is about start");
-    cols = data.cols;
-    rows = data.rows;
-
-
+    $('.gameStatus').text("Welcome To Conquers: Waiting for all Players");
 
 }
 function onLeaveGameClick() {
@@ -358,7 +353,9 @@ function drawDataTable(dataTable) {
 
 function drawBoard(data)
 {
-         var territoriesMap=data.gameEngine.descriptor.territoryMap;// get the reference for the body
+        var cols=data.cols;
+        var rows=data.rows;
+       // var territoriesMap=data.gameEngine.descriptor.territoryMap;// get the reference for the body
         var div1 = document.getElementById('boardBody');
         $("#boardBody").empty();
         var i=1;

@@ -4,6 +4,7 @@ import GameEngine.GameEngine;
 import com.google.gson.Gson;
 import utils.GameDetails;
 import utils.ServletUtils;
+import utils.TerritoryMapToSend;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,13 +43,12 @@ public class BoardServlet extends HttpServlet {
         rooms = (ArrayList<Room>) getServletContext().getAttribute("rooms");
         GameEngine engine;
         Room currRoom = null;
-
         currRoom = utils.getCurrentRoom(req, rooms);
         if (currRoom != null) {
             cols = currRoom.getGameEngine().getDescriptor().getColumns();
             rows = currRoom.getGameEngine().getDescriptor().getRows();
             engine=currRoom.getGameEngine();
-            out.println(gson.toJson(new GameDetails(cols, rows , "deatils",engine,currRoom.isGameStarted())));
+            //out.println(gson.toJson(new BoardDetails(cols,rows, new TerritoryMapToSend(engine.getDescriptor().getTerritoryMap()))));
 
         }
     }
