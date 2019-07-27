@@ -43,14 +43,17 @@ function intevalInit() {
     }
     else{
 
-        setInterval(checkGamecanStart,refreshRate);
-
-        setInterval(checkIfPLAYERCanPlay,refreshRate);
+        setInterval(getAllData,refreshRate);
         if(gameCanStart){
             setInterval(displayingIt,refreshRate);
         }
     }
 
+}
+
+function getAllData(){
+    checkGamecanStart();
+    checkIfPLAYERCanPlay();
 }
 function checkIfPLAYERCanPlay() {
     $.ajax
@@ -355,7 +358,7 @@ function drawBoard(data)
 {
         var cols=data.cols;
         var rows=data.rows;
-       // var territoriesMap=data.gameEngine.descriptor.territoryMap;// get the reference for the body
+        var territoriesMap=data.territoryMapToSend;// get the reference for the body
         var div1 = document.getElementById('boardBody');
         $("#boardBody").empty();
         var i=1;

@@ -2,10 +2,10 @@ package utils;
 
 import GameEngine.GameEngine;
 public class GameDetails {
-    int cols, rows;
-    String userName;
-    GameEngine gameEngine;
-    boolean started;
+    private int cols, rows;
+    private String userName;
+    private GameEngine gameEngine;
+    private boolean started;
 
     public GameDetails(int cols, int rows, String userName,GameEngine engine,boolean started) {
         this.cols = cols;
