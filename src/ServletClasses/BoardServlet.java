@@ -28,9 +28,6 @@ public class BoardServlet extends HttpServlet {
         if(action.equals("getGameDetails")) {
             returnBoardDetails(req, resp);
         }
-
-
-
     }
 
 

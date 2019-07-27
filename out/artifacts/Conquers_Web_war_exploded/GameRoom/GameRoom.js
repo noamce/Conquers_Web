@@ -43,14 +43,17 @@ function intevalInit() {
     }
     else{
 
-        setInterval(checkGamecanStart,refreshRate);
-
-        setInterval(checkIfPLAYERCanPlay,refreshRate);
+        setInterval(getAllData,refreshRate);
         if(gameCanStart){
             setInterval(displayingIt,refreshRate);
         }
     }
 
+}
+
+function getAllData(){
+    checkGamecanStart();
+    checkIfPLAYERCanPlay();
 }
 function checkIfPLAYERCanPlay() {
     $.ajax
@@ -208,6 +211,31 @@ function findPlayerColor(color){
     }
 
 }
+
+function findCellColor(color){
+
+    if (color===0) {
+        return "red"
+        //document.getElementById("PlayerColor").style.color= "red";
+        //player_color.setTextFill(Color.RED);
+    }
+    if (color===1) {
+        return "blue"
+        // document.getElementById("PlayerColor").style.color= "blue";
+        // player_color.setTextFill(Color.BLUE);
+    }
+    if (color===2) {
+        return "green"
+        //document.getElementById("PlayerColor").style.color= "green";
+        //player_color.setTextFill(Color.GREEN);
+    }
+    if (color===3) {
+        return "yellow"
+        // document.getElementById("PlayerColor").style.color= "yellow";
+        //player_color.setTextFill(Color.YELLOW);
+    }
+
+}
 function turnOffButtons() {
 
     document.getElementById('maintenance').style.visibility='hidden';
@@ -360,7 +388,7 @@ function drawBoard(data)
         var territoriesMap=data.territoryMapToSend;// get the reference for the body
         var div1 = document.getElementById('boardBody');
         $("#boardBody").empty();
-        var i=1;
+        var i=0;
         // creates a <table> element
         var tbl = document.createElement("table");
         // creating rows
@@ -373,7 +401,9 @@ function drawBoard(data)
                 var id="id "+territoriesMap[i].id+"\n";
                 var threshold="threshold "+territoriesMap[i].Threshold+"\n";
                 var profit="profit "+territoriesMap[i].profit;
+                var color = territoriesMap[i].color;
                 var cellText = document.createTextNode(id  + threshold  + profit);
+                cell.style.color = findCellColor(color);
                 i++;
                 cell.appendChild(cellText);
                 cell.onclick=showDetail;
