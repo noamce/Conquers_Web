@@ -2,8 +2,11 @@
 <head>
     <title>Conquers</title>
     <script src="/Lobby/jquery-3.4.1.js"></script>
+    <script src="/Lobby/common/context-path-helper.js"></script>
+    <script src="/Lobby/chatRoom/chatroom.js"></script>
     <link rel="stylesheet" href="/Lobby/bootstrap.min.css">
     <link rel="stylesheet" href="Rooms.css">
+    <link rel="stylesheet" href="/Lobby/chatRoom/chatroom.css">
 </head>
 <body background="/images/Professional-Website-Background-White-106363.jpg">
 <header>
@@ -59,5 +62,33 @@
     <div id="roomsarea" class="span6"></div>
 </div>
 <script type="text/javascript" src="LobbyPageControl.js"></script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-1">
+            <div class="sidebar">
+                <h4>Online</h4>
+                <div class="clearfix">
+                    <div class="input">
+                        <ul id="userslist1">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="content">
+                <div id="chatwindow">
+                    <h4>Chat</h4>
+                    <div id="chatarea" class="span6"></div>
+                    <form id="chatform" method="POST" action="sendChat">
+                        <input type="text" id="userstring" name="userstring"/>
+                        <input type="submit" value="Send"/>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -30,9 +30,6 @@ public class DataTableServlet extends HttpServlet {
         {
             sendTableData(req,resp);
         }
-
-
-
     }
 
     private void sendTableData(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -45,7 +42,6 @@ public class DataTableServlet extends HttpServlet {
         List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
         List<GameObjects.unitDataTable> uniDataTable=new ArrayList<>();
         for (int i = 0; i < unitMapp.size(); i++) {
-
             String unitType = unitMapp.get(i);
             int price1 = engine.getDescriptor().getUnitMap().get(unitType).getPurchase();
             int subduction1 = engine.getDescriptor().getUnitMap().get(unitType).getCompetenceReduction();
