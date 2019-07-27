@@ -363,6 +363,7 @@ function drawDataTable(dataTable) {
           tr.appendChild(td);
           td=document.createElement("td");
           var amountInput = document.createElement("INPUT");
+          amountInput.setAttribute("value","0");
           amountInput.setAttribute("size",2);
           amountInput.setAttribute("id",dataTable[i].type);
           td.appendChild(amountInput);

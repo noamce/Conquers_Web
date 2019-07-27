@@ -149,10 +149,6 @@ public class SingleGameServlet extends HttpServlet {
         List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
         Room currRoom = utils.getCurrentRoom(req, rooms);
         engine = currRoom.getGameEngine();
-
-
-
-
     }
 
 //    private void isItThisPlayer(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -209,10 +205,74 @@ public class SingleGameServlet extends HttpServlet {
 
     }
 
-    private void addArmyInfo(HttpServletRequest req, HttpServletResponse resp) {
+    private void addArmyInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+        PrintWriter out = resp.getWriter();
+        Gson gson = new Gson();
+        GameEngine engine;
+        Room currRoom = utils.getCurrentRoom(req, rooms);
+        resp.setContentType("application/json");
+        int territoryId=Integer.parseInt(req.getParameter("targetTerritory"));
+        engine = currRoom.getGameEngine();
+        int Amount;
+        if (canBuildArmyFromData(req,resp,engine)) {
+            List<String> listOfUnits = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
+
+            for (int i = 0; i < engine.getDescriptor().getUnitMap().size(); i++) {
+                String unitType = listOfUnits.get(i);
+                Amount = Integer.parseInt(req.getParameter(unitType));
+                for (int j = 0; j < Amount; j++) {
+
+                    int rank = engine.getDescriptor().getUnitMap().get(unitType).getRank();
+                    int purchase = engine.getDescriptor().getUnitMap().get(unitType).getPurchase();
+                    int Maxfp = engine.getDescriptor().getUnitMap().get(unitType).getMaxFirePower();
+                    int competenceReduction = engine.getDescriptor().getUnitMap().get(unitType).getCompetenceReduction();
+                    Unit unit = new Unit(unitType, rank, purchase, Maxfp, competenceReduction);
+                    engine.getDescriptor().getTerritoryMap().get(territoryId).getConquerArmyForce().addUnit(unit);
+                }
+
+            }
+            int price = pricetobuy(req,resp,engine);
+            engine.getGameManager().getCurrentPlayerTurn().decrementFunds(price);
+        }
     }
 
-    private void wellOrchestratedInfo(HttpServletRequest req, HttpServletResponse resp) {
+    private void wellOrchestratedInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        Battle battle=new Battle();
+        Gson gson = new Gson();
+        GameEngine engine;
+        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("application/json");
+        int territoryId=Integer.parseInt(req.getParameter("targetTerritory"));
+        Room currRoom = utils.getCurrentRoom(req, rooms);
+
+        engine = currRoom.getGameEngine();
+
+        if (canBuildArmyFromData(req,resp,engine)) {
+            Army attackerArmy = buildArmyFromData(req,resp,engine);
+            Army PredefenceArmy = engine.getDescriptor().getTerritoryMap().get(territoryId).getConquerArmyForce();
+            battle.preparedToBattle(PredefenceArmy, attackerArmy, engine.getDescriptor().getTerritoryMap().get(territoryId));
+            //showWarStatus(attackerArmy,engine.getDescriptor().getTerritoryMap().get(territoryId).getConquerArmyForce());
+            if (battle.iswellOrchestratedAttackSucceed(engine.getDescriptor().getUnitMap().size()) == 1)//attacker win
+            {
+                battle.updateArmiesAfterAttackerwellOrchestratedVictory(engine.getDescriptor().getUnitMap().size());
+                engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().deleteTerritory(territoryId);
+                engine.getDescriptor().getTerritoryMap().get(territoryId).setConquer(engine.getGameManager().getCurrentPlayerTurn());
+                engine.getGameManager().getCurrentPlayerTurn().addTerritory(engine.getDescriptor().getTerritoryMap().get(territoryId));
+            } else {
+                battle.updateArmiesAfterAttackerwellOrchestratedDefeat(engine.getDescriptor().getUnitMap().size());
+            }
+            //winner_war.setText("The Battle Winner: "+engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().getPlayer_name());
+            String winner=engine.getDescriptor().getTerritoryMap().get(territoryId).getConquer().getPlayer_name();
+            out.println(gson.toJson(new BattleInfo(attackerArmy,PredefenceArmy,winner,true)));
+
+        }else{
+            out.println(gson.toJson(new BattleInfo(null,null,null,false)));
+        }
+        if (battle.isWinnerArmyNotStrongEnoughToHoldTerritory())
+            engine.getDescriptor().getTerritoryMap().get(territoryId).xChangeFundsForUnitsAndHold();
     }
 
     private void calculatedRiskInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
