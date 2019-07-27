@@ -115,7 +115,10 @@ public class GameManager implements Serializable {
     public void nextPlayerInTurn() {
 
         currentPlayerTurn= playersTurns.poll();
-
+        if (currentPlayerTurn == null){
+            loadPlayersIntoQueueOfTurns();
+            currentPlayerTurn= playersTurns.poll();
+        }
     }
 
     private void harvestProduction(Player player) {
@@ -297,7 +300,7 @@ public class GameManager implements Serializable {
     public boolean isTerritoryBelongsCurrentPlayer() {
         if(selectedTerritoryByPlayer.getConquer() == null)
             return false;
-        return selectedTerritoryByPlayer.getConquer().equals(currentPlayerTurn);
+        return selectedTerritoryByPlayer.getConquer().getPlayer_name().equals(currentPlayerTurn.getPlayer_name());
     }
 
     public boolean isConquered() {
@@ -322,21 +325,21 @@ public class GameManager implements Serializable {
         return currentPlayerTurn;
     }
 
-    public void roundUndo() {
-        history.pop();
-        updateGameDescriptorAfterUndo();
-    }
-    private void updateGameDescriptorAfterUndo() {
-        roundNumber = history.peek().getTurn();
-        gameDescriptor.setTerritoryMap(history.peek().getCopyOfMap());
-        gameDescriptor.setPlayersList(history.peek().getCopyOfPlayersList());
-        updateTurnsObjectQueue();
-    }
-    private void updateTurnsObjectQueue() {
-        while (!playersTurns.isEmpty())
-            playersTurns.poll();
-        loadPlayersIntoQueueOfTurns();
-    }
+//    public void roundUndo() {
+//        history.pop();
+//        updateGameDescriptorAfterUndo();
+//    }
+//    private void updateGameDescriptorAfterUndo() {
+//        roundNumber = history.peek().getTurn();
+//        gameDescriptor.setTerritoryMap(history.peek().getCopyOfMap());
+//        gameDescriptor.setPlayersList(history.peek().getCopyOfPlayersList());
+//        updateTurnsObjectQueue();
+//    }
+//    private void updateTurnsObjectQueue() {
+//        while (!playersTurns.isEmpty())
+//            playersTurns.poll();
+//        loadPlayersIntoQueueOfTurns();
+//    }
     public void selectedArmyForceDie()
     {
         selectedArmyForce=null;

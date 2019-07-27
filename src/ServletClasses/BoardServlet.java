@@ -56,10 +56,11 @@ public class BoardServlet extends HttpServlet {
         List<OneTerritoryDetails>  territorys;
         territorys=new ArrayList<>();
         int id,Threshold,profit;
-        int color=-1;
+
 
         for(int i=1;i<=territoryMap.size();i++)
         {
+            int color=-1;
             profit=territoryMap.get(i).getProfit();
             id=territoryMap.get(i).getID();
             Threshold=territoryMap.get(i).getArmyThreshold();
