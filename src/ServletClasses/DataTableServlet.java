@@ -1,9 +1,8 @@
 package ServletClasses;
 
 import GameEngine.GameEngine;
-import GameObjects.Player;
+import GameObjects.unitDataTable;
 import com.google.gson.Gson;
-import utils.PlayerModel;
 import utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -16,40 +15,48 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ServletClasses.PlayerInfo")
-public class PlayerInfo extends HttpServlet {
+@WebServlet(name = "DataTableServlet")
+public class DataTableServlet extends HttpServlet {
+
+
     private ServletUtils utils = new ServletUtils();
+    //private final String GAMES_URL = "Lobby/lobby.html";
+    private List<Room> rooms = new ArrayList<>();
 
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //System.out.println("inside the loop");
-        resp.setContentType("application/json");
-        PrintWriter out = resp.getWriter();
-        Gson gson = new Gson();
-        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
-        GameEngine engine;
-        Room currRoom = utils.getCurrentRoom(req, rooms);
-        engine = currRoom.getGameEngine();
-        Player currentPlayer = engine.getGameManager().getCurrentPlayerTurn();
+    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action;
+        action = req.getParameter("action");
+        if (action.equals("dataTableDetails"))
+        {
+            sendTableData(req,resp);
+        }
 
 
-        out.println(gson.toJson(new PlayerModel(
-                currentPlayer.getPlayer_name(),
-                currentPlayer.getColor(),
-                currentPlayer.getFunds(),
-                currentPlayer.getTerritoriesID().size(),
-                engine.getGameManager().roundNumber,
-                engine.getDescriptor().getTotalCycles())
-        ));
+
     }
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+    private void sendTableData(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+        Gson gson = new Gson();
+        Room currRoom = utils.getCurrentRoom(req, rooms);
+        GameEngine engine=currRoom.getGameEngine();
+        List<String> unitMapp = new ArrayList<String>(engine.getDescriptor().getUnitMap().keySet());
+        List<GameObjects.unitDataTable> uniDataTable=new ArrayList<>();
+        for (int i = 0; i < unitMapp.size(); i++) {
+
+            String unitType = unitMapp.get(i);
+            int price1 = engine.getDescriptor().getUnitMap().get(unitType).getPurchase();
+            int subduction1 = engine.getDescriptor().getUnitMap().get(unitType).getCompetenceReduction();
+            int rank1 = engine.getDescriptor().getUnitMap().get(unitType).getRank();
+            uniDataTable.add(new unitDataTable(unitType, engine.getDescriptor().getUnitMap().get(unitType).getMaxFirePower(), price1, subduction1, rank1));
+
+
+        }
+        out.println(gson.toJson(uniDataTable));
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

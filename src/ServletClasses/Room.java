@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Room {
 
-
+    private int color=0;
     private String roomID="1";
     private List<Player> players = new ArrayList<>();
     private int numberOfOnlinePlayers;
@@ -32,6 +32,8 @@ public class Room {
     }
 
     void addPlayer(Player player){
+        player.setColor(color);
+        color++;
         players.add(player);
         numberOfOnlinePlayers++;
         if(numberOfOnlinePlayers==maxNumberOfOnlineUsers) {
@@ -71,6 +73,7 @@ public boolean isGameStarted()
                 System.out.println("removed player" + players.get(i).getPlayer_name());
                 players.remove(players.get(i));
                 numberOfOnlinePlayers--;
+                color--;
             }
         }
 

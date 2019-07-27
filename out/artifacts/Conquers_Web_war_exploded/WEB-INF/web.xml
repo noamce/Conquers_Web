@@ -37,6 +37,26 @@
         <servlet-name>PlayerInfo</servlet-name>
         <servlet-class>ServletClasses.PlayerInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IsItThisPlayerServlet</servlet-name>
+        <servlet-class>ServletClasses.isItThisPlayerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TerritoryHandleServlet</servlet-name>
+        <servlet-class>ServletClasses.TerritoryHandleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BoardServlet</servlet-name>
+        <servlet-class>ServletClasses.BoardServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllPlayersHereServlet</servlet-name>
+        <servlet-class>ServletClasses.AllPlayersHereServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DataTableServlet</servlet-name>
+        <servlet-class>ServletClasses.DataTableServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -71,5 +91,24 @@
         <servlet-name>PlayerInfo</servlet-name>
         <url-pattern>/playerInfo</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>IsItThisPlayerServlet</servlet-name>
+        <url-pattern>/IsItThisPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TerritoryHandleServlet</servlet-name>
+        <url-pattern>/Territory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BoardServlet</servlet-name>
+        <url-pattern>/updateMap</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllPlayersHereServlet</servlet-name>
+        <url-pattern>/AllPlayersHere</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DataTableServlet</servlet-name>
+        <url-pattern>/DataTable</url-pattern>
+    </servlet-mapping>
 </web-app>

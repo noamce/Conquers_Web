@@ -57,7 +57,7 @@ function intevalInit() {
 function checkIfPLAYERCanPlay() {
     $.ajax
     ({
-        url: 'SingleGame',
+        url: '/IsItThisPlayer',
         data: {
             action: "isItThisPlayer"
         },
@@ -83,7 +83,7 @@ function checkingPlayer(currentPlayer) {
 function checkGamecanStart(){
     $.ajax
     ({
-        url: 'SingleGame',
+        url: '/AllPlayersHere',
         data: {
             action: "allPlayersHere"
         },
@@ -174,7 +174,7 @@ function getCurrentPlayerInfo() {
 
 
 function processInfo(data){
-    console.log(data);
+    //console.log(data);
     currentPlayerPlaying=data.name.toString();
     var element = document.getElementById("nameOfcurrentPlayer");
     element.innerHTML="Player Turn:"+data.name.toString();
@@ -190,22 +190,22 @@ function processInfo(data){
 
 function findPlayerColor(color){
 
-    if (color===1) {
+    if (color===0) {
         $('.PlayerColor').text("Player color: RED");
         //document.getElementById("PlayerColor").style.color= "red";
         //player_color.setTextFill(Color.RED);
     }
-    if (color===2) {
+    if (color===1) {
         $('.PlayerColor').text("Player color: BLUE");
        // document.getElementById("PlayerColor").style.color= "blue";
        // player_color.setTextFill(Color.BLUE);
     }
-    if (color===3) {
+    if (color===2) {
         $('.PlayerColor').text("Player color: GREEN");
         //document.getElementById("PlayerColor").style.color= "green";
         //player_color.setTextFill(Color.GREEN);
     }
-    if (color===4) {
+    if (color===3) {
         $('.PlayerColor').text("Player color: YELLOW");
        // document.getElementById("PlayerColor").style.color= "yellow";
         //player_color.setTextFill(Color.YELLOW);
@@ -229,7 +229,7 @@ function turnOffButtons() {
 function upDateMapandInfo() {
     $.ajax
     ({
-        url: 'SingleGame',
+        url: '/updateMap',
         data: {
             action: "getGameDetails"
         },
@@ -260,18 +260,18 @@ function startGame() {
 
         }
 }
-function createGameDetails() {
-    $.ajax
-    ({
-        url: 'SingleGame',
-        data: {
-            action: "getGameDetails"
-        },
-        type: 'GET',
-        success: setGameDetails
-
-    });
-}
+// function createGameDetails() {
+//     $.ajax
+//     ({
+//         url: 'SingleGame',
+//         data: {
+//             action: "getGameDetails"
+//         },
+//         type: 'GET',
+//         success: setGameDetails
+//
+//     });
+// }
 
 // function setGameDetails(data) {
 //     userName = data.userName; //this is the name of the player who is the page open(of the session)
@@ -312,7 +312,7 @@ function drawUnitTable()
 {
     $.ajax
 ({
-    url: 'SingleGame',
+    url: '/DataTable',
     data: {
         action: "dataTableDetails"
     },
@@ -322,10 +322,9 @@ function drawUnitTable()
 });
 }
 function drawDataTable(dataTable) {
-    console.log(dataTable);
+    //console.log(dataTable);
     $("#dataTable").empty();
     dataTableSize=dataTable.length;
-    console.log(dataTable);
       for ( var i = 0; i < dataTableSize; i++) {
           var tr = document.createElement("tr");
           var td = document.createElement("td");
@@ -410,7 +409,7 @@ function showTerritoryId(event)
 function showTerritoryInfo() {
     $.ajax
     ({
-        url: 'SingleGame',
+        url: '/Territory',
         data: {
             action: "territoryDataTable",
             showFlag: showTerritoryInfoFlag,
@@ -426,7 +425,7 @@ function drawTerritoryDataTable(territoryDataTableInfo) {
     //drawTerritory army table including fp and maintenace
     $("#territoryTableDataBody").empty();
     territoryDataTableSize=territoryDataTableInfo.length;
-    console.log(territoryDataTableInfo);
+    //console.log(territoryDataTableInfo);
     for ( var i = 0; i < territoryDataTableSize; i++) {
         var tr = document.createElement("tr");
         var td = document.createElement("td");
@@ -557,7 +556,7 @@ function whatVisible(territoryButtonInfo){
 function territoryClicked() {
     $.ajax
     ({
-        url: 'SingleGame',
+        url: '/Territory',
         data: {
             action: "territoryClicked",
             targetTerritory:targetTerritory
@@ -643,7 +642,7 @@ function onConfirmClick(){
     if(buttonPressed === 2){
         $.ajax
         ({
-            url: 'SingleGame',
+            url: '/DataTable',
             data: {
                 action: "dataTableDetails"
             },
@@ -656,7 +655,7 @@ function onConfirmClick(){
     {
         $.ajax
         ({
-            url: 'SingleGame',
+            url: '/DataTable',
             data: {
                 action: "dataTableDetails"
             },
@@ -670,7 +669,7 @@ function onConfirmClick(){
     {
         $.ajax
         ({
-            url: 'SingleGame',
+            url: '/DataTable',
             data: {
                 action: "dataTableDetails"
             },
@@ -684,7 +683,7 @@ function onConfirmClick(){
     {
         $.ajax
         ({
-            url: 'SingleGame',
+            url: '/DataTable',
             data: {
                 action: "dataTableDetails"
             },
@@ -864,7 +863,7 @@ function sendNaturalTerritory(unitTable) {
 function ifNaturalTerritoryIsConquered(haveEnoughTourings) {
 
 if(haveEnoughTourings){
-    alert("The Territory is now yours");
+    //alert("The Territory is now yours");
 }
 else{
     alert("You dont have enough Tourings");

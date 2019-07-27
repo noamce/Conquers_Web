@@ -1,9 +1,8 @@
 package ServletClasses;
 
 import GameEngine.GameEngine;
-import GameObjects.Player;
 import com.google.gson.Gson;
-import utils.PlayerModel;
+import utils.GameDetails;
 import utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -16,40 +15,45 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ServletClasses.PlayerInfo")
-public class PlayerInfo extends HttpServlet {
+@WebServlet(name = "BoardServlet")
+public class BoardServlet extends HttpServlet {
     private ServletUtils utils = new ServletUtils();
+    //private final String GAMES_URL = "Lobby/lobby.html";
+    private List<Room> rooms = new ArrayList<>();
 
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //System.out.println("inside the loop");
+    protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action;
+        action = req.getParameter("action");
+        if(action.equals("getGameDetails")) {
+            returnGameDetails(req, resp);
+        }
+
+
+
+    }
+
+
+    private void returnGameDetails(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        List<Room> rooms  = (ArrayList<Room>) getServletContext().getAttribute("rooms");
+        int cols , rows;
+        String currentPlayer;
+        rooms = (ArrayList<Room>) getServletContext().getAttribute("rooms");
         GameEngine engine;
-        Room currRoom = utils.getCurrentRoom(req, rooms);
-        engine = currRoom.getGameEngine();
-        Player currentPlayer = engine.getGameManager().getCurrentPlayerTurn();
+        Room currRoom = null;
 
+        currRoom = utils.getCurrentRoom(req, rooms);
+        if (currRoom != null) {
+            cols = currRoom.getGameEngine().getDescriptor().getColumns();
+            rows = currRoom.getGameEngine().getDescriptor().getRows();
+            engine=currRoom.getGameEngine();
+            out.println(gson.toJson(new GameDetails(cols, rows , "deatils",engine,currRoom.isGameStarted())));
 
-        out.println(gson.toJson(new PlayerModel(
-                currentPlayer.getPlayer_name(),
-                currentPlayer.getColor(),
-                currentPlayer.getFunds(),
-                currentPlayer.getTerritoriesID().size(),
-                engine.getGameManager().roundNumber,
-                engine.getDescriptor().getTotalCycles())
-        ));
+        }
     }
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request  servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
